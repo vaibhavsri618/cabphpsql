@@ -41,6 +41,12 @@ if (isset($_POST['submit'])) {
     
         echo $display; 
     } ?></h4>
+
+    <?php 
+    if(!isset($_COOKIE['name']))
+    {
+
+  ?>
         <div id="form">
         <form action="#" method="POST">
             <label><b>UserName:</b></label>
@@ -53,6 +59,28 @@ if (isset($_POST['submit'])) {
             <p style="font-size:30px">New user , <a href="registration2.php">Click here to register yourself</a>
       
         </form>
+
+
+        <?php
+    }
+
+    else
+    {
+        ?>
+        <div id="form">
+        <form action="#" method="POST">
+            <label><b>UserName:</b></label>
+            <input type="text" name="username" id="user7" placeholder="Username" value="<?php echo $_COOKIE['name']?>"><br>
+            <label><b>Password:</b></label>
+            <input type="password" name="password"
+             id="user2" placeholder="Password"><br>
+            <input type="submit" name="submit" value="Submit" id="submit"><br>
+            <br>
+            <p style="font-size:30px">New user , <a href="registration2.php">Click here to register yourself</a>
+      
+        </form>
+   <?php }
+        ?>
     </div>
     </body>
 </html>

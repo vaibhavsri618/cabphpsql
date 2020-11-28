@@ -70,11 +70,15 @@ class user
                
                 if ($row['user_name']==$username && $row['password']==$password && $row['isblock']==1) {
                     if ($row['is_admin']==0) {
+
+                        setcookie("user", $username, time() + (86400 * 30)); 
+
                         $_SESSION['userdata']=array('userid'=>$row['user_id'],
                         'username'=>$row['user_name'],'name'=>$row['name']);  
                         header('Location:admin.php'); 
                     } else if($row['is_admin']==1){
 
+                        setcookie("user", $username, time() + (86400 * 30)); 
                         $_SESSION['userdata']=array('userid'=>$row['user_id'],
                         'username'=>$row['user_name'],'name'=>$row['name']);  
                         header('Location:homeuser.php');
@@ -123,8 +127,9 @@ function register($username,$password,$name,$confirmpassword,$mobile,$date,$conn
     
 
     if (count($error)==0) {
-        //$password=md5($password);
+    
 
+     
             $sql = "INSERT INTO tbl_user (user_name, name, dateofsignup, mobile, isblock, password, is_admin)
             VALUES ('".$username."','".$name."','".$date."','".$mobile."',0,'".$password."',1)";
         if ($conn->query($sql) === true) {
@@ -147,7 +152,7 @@ function register($username,$password,$name,$confirmpassword,$mobile,$date,$conn
 
 function book($pick,$drop,$cars,$weight,$date,$conn)
 {
-    echo $cars;
+    echo "Your cab type is ".$cars."<br>";
     if($drop==$pick ||  $pick=="0" || $drop=="10" || $cars=="20")
     {
         echo 'Location cant be Same or Field is empty';
@@ -345,7 +350,7 @@ elseif($cars=="cedsuv")
   } 
 
     
-echo " YOur Ride has been booked please wait for corfirmation. Total fare is ".$totalcost;
+echo " Your Ride has been booked please wait for corfirmation. <br> Total fare is ".$totalcost;
 
 
 }
