@@ -1,0 +1,87 @@
+body
+{
+    background-image: url("cab.jpg");
+    background-repeat: no-repeat;
+   
+}
+
+#head
+{
+    color: white;
+    font-weight: bold;
+}
+#phead
+{
+    color: white;
+}
+.main
+{
+    background-color: white;
+    width: auto;
+    
+}
+
+#button1
+{
+    background-color: #CDDC39;
+    border-radius: 20px;
+    border: none;
+    color: black;
+    font-size: 20px;
+}
+#buttondiv
+{
+    border-bottom: 1px solid lightgray;
+}
+
+.input
+{
+    background-color: lightgray;
+    border-radius: 5px;
+}
+label
+{
+    color: gray;
+}
+.sel
+{
+    -webkit-appearance: none;
+}
+.ibox
+{
+    background-color: lightgray;
+}
+.button2
+{
+    background-color: lightgray;
+    background-color:  #CDDC39;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.maindiv
+{
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+header
+{
+    background-color: white;
+}
+
+footer
+{
+    background-color: white;
+}
+
+#btn
+{
+    border-radius: 20px;
+    background-color: #CDDC39;
+    color: white;
+    padding: 8px 30px;
+    margin-left: 50px;
+}
+#book
+{
+    visibility: hidden;
+}
