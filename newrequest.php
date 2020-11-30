@@ -101,6 +101,20 @@ $id=$_SESSION['userdata']['userid'];
                        
                     </select></label>
 
+
+
+                    <label style="float:right;margin-top:20px;margin-right:10px">Filter By Cab Type:
+                    <select id="filtercar" style="height:40px;width:100px">
+                        <option value="none">None</option>
+                        <option value="cedmicro">CedMicro</option>
+                      
+                        <option value="cedmini">CedMini</option>
+
+                        <option value="cedroyal">CedRoyal</option>
+                        <option value="cedsuv">CedSuv</option>
+                       
+                    </select></label>
+
                     <br>
                     <br>
                     <div id="res">
@@ -221,6 +235,32 @@ $id=$_SESSION['userdata']['userid'];
 
 
             });
+
+
+$("#filtercar").change(function(){
+
+var value=$(this).val();
+var id=<?php echo $id?>
+
+$.ajax({
+        type: 'post',
+        url: 'filteradmin.php',
+        data:{
+        id33:id,
+        value:value
+
+        },
+        success: function (answer) {
+        
+        $("#res").html(answer);
+        console.log(answer);
+},
+
+});
+
+
+});
+
 
         });
         </script>

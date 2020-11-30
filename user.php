@@ -71,14 +71,14 @@ class user
                 if ($row['user_name']==$username && $row['password']==$password && $row['isblock']==1) {
                     if ($row['is_admin']==0) {
 
-                        setcookie("user", $username, time() + (86400 * 30)); 
+                        setcookie("user", $username, time() + (60*60*24)); 
 
                         $_SESSION['userdata']=array('userid'=>$row['user_id'],
                         'username'=>$row['user_name'],'name'=>$row['name']);  
                         header('Location:admin.php'); 
                     } else if($row['is_admin']==1){
 
-                        setcookie("user", $username, time() + (86400 * 30)); 
+                        setcookie("user", $username, time() + (60*60*24)); 
                         $_SESSION['userdata']=array('userid'=>$row['user_id'],
                         'username'=>$row['user_name'],'name'=>$row['name']);  
                         header('Location:homeuser.php');
@@ -350,7 +350,7 @@ elseif($cars=="cedsuv")
   } 
 
     
-echo " Your Ride has been booked please wait for corfirmation. <br> Total fare is ".$totalcost;
+echo " Your Ride has been booked please wait for corfirmation. <br> Total fare is 	&#x20B9;".$totalcost."/-";
 
 
 }
@@ -524,7 +524,7 @@ echo " Your Ride has been booked please wait for corfirmation. <br> Total fare i
     
     
     }
-    echo"Total cost: ".($totalcost);
+    echo"Total cost: 	&#x20B9;".($totalcost)."/-";
         
 }
     }
@@ -701,7 +701,7 @@ if($weight>20)
 
 
 }
-echo"Total cost: ".($totalcost);
+echo"Total cost: 	&#x20B9;".($totalcost)."/-";
     
 }  
 }
@@ -1391,6 +1391,132 @@ function filterusercancelride($id20,$value,$conn)
 
 
 }
+
+
+
+function filtercompletecab($id31, $value, $conn)
+
+ {
+
+
+
+
+  $sql="SELECT * FROM tbl_ride WHERE `car`='".$value."' AND `status`=2 AND `customer_user_id`='".$id31."'";
+    $result = $conn->query($sql);
+  
+    $row1=array();
+      
+    if ($result->num_rows > 0) {
+   
+      while($row = $result->fetch_assoc()) {
+  
+        array_push($row1,$row);
+      
+      }
+      return $row1;
+    } else {
+      echo "0 results";
+    }
+
+
+
+
+ }
+
+
+ function filterpendingcab($id31, $value, $conn)
+
+ {
+
+
+
+
+  $sql="SELECT * FROM tbl_ride WHERE `car`='".$value."' AND status=1 AND `customer_user_id`='".$id31."'";
+    $result = $conn->query($sql);
+  
+    $row1=array();
+      
+    if ($result->num_rows > 0) {
+   
+      while($row = $result->fetch_assoc()) {
+  
+        array_push($row1,$row);
+      
+      }
+      return $row1;
+    } else {
+      echo "0 results";
+    }
+
+
+
+
+ }
+
+
+ function filtercancelcab($id31, $value, $conn)
+
+ {
+
+
+
+
+  $sql="SELECT * FROM tbl_ride WHERE `car`='".$value."' AND (status=0 OR status=3) AND `customer_user_id`='".$id31."'";
+    $result = $conn->query($sql);
+  
+    $row1=array();
+      
+    if ($result->num_rows > 0) {
+   
+      while($row = $result->fetch_assoc()) {
+  
+        array_push($row1,$row);
+      
+      }
+      return $row1;
+    } else {
+      echo "0 results";
+    }
+
+
+
+
+ }
+
+
+ function filterallcab($id31, $value, $conn)
+
+ {
+
+
+
+
+  $sql="SELECT * FROM tbl_ride WHERE `car`='".$value."' AND `customer_user_id`='".$id31."'";
+    $result = $conn->query($sql);
+  
+    $row1=array();
+      
+    if ($result->num_rows > 0) {
+   
+      while($row = $result->fetch_assoc()) {
+  
+        array_push($row1,$row);
+      
+      }
+      return $row1;
+    } else {
+      echo "0 results";
+    }
+
+
+
+
+ }
+
+
+
+
+
 
 
 

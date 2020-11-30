@@ -1216,6 +1216,100 @@ else if($value=="today")
  }
 
 
+ function filtercompletecab($id31, $value, $conn)
+
+ {
+
+
+
+
+  $sql="SELECT * FROM tbl_ride WHERE `car`='".$value."' AND status=2";
+    $result = $conn->query($sql);
+  
+    $row1=array();
+      
+    if ($result->num_rows > 0) {
+   
+      while($row = $result->fetch_assoc()) {
+  
+        array_push($row1,$row);
+      
+      }
+      return $row1;
+    } else {
+      echo "0 results";
+    }
+
+
+
+
+ }
+
+
+
+ function filtercancelcab($id31, $value, $conn)
+
+ {
+
+
+
+
+  $sql="SELECT * FROM tbl_ride WHERE `car`='".$value."' AND (status=0 OR status=3)";
+    $result = $conn->query($sql);
+  
+    $row1=array();
+      
+    if ($result->num_rows > 0) {
+   
+      while($row = $result->fetch_assoc()) {
+  
+        array_push($row1,$row);
+      
+      }
+      return $row1;
+    } else {
+      echo "0 results";
+    }
+
+
+
+
+ }
+
+
+
+
+ function filternewcab($id31, $value, $conn)
+
+ {
+
+
+
+
+  $sql="SELECT * FROM tbl_ride WHERE `car`='".$value."' AND status=1";
+    $result = $conn->query($sql);
+  
+    $row1=array();
+      
+    if ($result->num_rows > 0) {
+   
+      while($row = $result->fetch_assoc()) {
+  
+        array_push($row1,$row);
+      
+      }
+      return $row1;
+    } else {
+      echo "0 results";
+    }
+
+
+
+
+ }
+
+
+
 
 
 

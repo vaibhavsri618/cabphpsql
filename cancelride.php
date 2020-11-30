@@ -100,6 +100,20 @@ if(isset($_SESSION['userdata']['name']))
                        
                     </select></label>
 
+
+
+                    <label style="float:right;margin-top:20px;margin-right:10px">Filter By Cab Type:
+                    <select id="filtercar" style="height:40px;width:100px">
+                        <option value="none">None</option>
+                        <option value="cedmicro">CedMicro</option>
+                      
+                        <option value="cedmini">CedMini</option>
+
+                        <option value="cedroyal">CedRoyal</option>
+                        <option value="cedsuv">CedSuv</option>
+                       
+                    </select></label>
+
                    
                     <br>
                     <div id="res">
@@ -123,7 +137,7 @@ if(isset($_SESSION['userdata']['name']))
                     <tbody>
 
 
-                <?
+                <?php
                 $admin=new adminwork();
                 $dbconnect=new Dbconnect();
                 $row1=$admin->cancelride($dbconnect->conn);
@@ -224,6 +238,32 @@ if(isset($_SESSION['userdata']['name']))
 
 
 });
+
+
+$("#filtercar").change(function(){
+
+var value=$(this).val();
+var id=<?php echo $id?>
+
+$.ajax({
+        type: 'post',
+        url: 'filteradmin.php',
+        data:{
+        id32:id,
+        value:value
+
+        },
+        success: function (answer) {
+        
+        $("#res").html(answer);
+        console.log(answer);
+},
+
+});
+
+
+});
+
 
         });
         </script>

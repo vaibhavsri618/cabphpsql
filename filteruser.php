@@ -566,7 +566,278 @@ $id=$_SESSION['userdata']['userid'];
                                         echo "<td>".$can."</td>";               }
                                         }
                                     }
-                            
+
+
+
+
+
+if (isset($_POST['id31']) && isset($_POST['value']))
+
+{
+    $id31 = $_POST['id31'];
+    $value = $_POST['value'];
+   
+?>
+        <table border="2px solid black">
+    
+    <tr>
+    
+    <th>Ride Date</th>
+    <th>Pick Up Point</th>
+    <th>Drop Point</th>
+    <th>Total Distance</th>
+    <th>Luggage</th>
+   
+    <th>Car</th> 
+    <th>Total Fare</th> 
+  
+  
+    </tr>
+    <tbody>
+
+        
+    
+    
+        </tr>
+        <tbody>
+                        
+            <?php
+    $user = new user();
+    $dbconnect = new Dbconnect();
+    $row1 = $user->filtercompletecab($id31, $value, $dbconnect->conn);
+    $total=0;
+    if ($row1 != "")
+    {
+
+        foreach ($row1 as $key => $row)
+        {
+
+         
+            if($row['luggage']=="")
+                    $luggage=0;
+                    else
+                    $luggage=$row['luggage'];
+
+                    $rideid=$row['ride_id'];
+                    echo "<tr>";
+                    echo "<td>".$row['ride_date']."</td>";
+                    echo "<td>".$row['from_distance']."</td>";
+                    echo "<td>".$row['to_distance']."</td>";
+                    echo "<td>".$row['total_distance']."</td>";
+                    echo "<td>".$luggage."</td>";  
+                    echo "<td>".$row['car']."</td>";
+                    echo "<td>".$row['total_fare']."</td>"; 
+                  
+                    $total=$total+$row['total_fare'];
+
+        }
+
+        ?> 
+        <tr><th colspan='6'>Your total Earning till now</th>
+        <th><?php echo $total ?></th>
+      </tr>
+         <?php
+    }
+}
+
+
+
+if (isset($_POST['id32']) && isset($_POST['value']))
+
+{
+    $id32 = $_POST['id32'];
+    $value = $_POST['value'];
+   
+?>
+        <table border="2px solid black">
+    
+    <tr>
+    
+    <th>Ride Date</th>
+    <th>Pick Up Point</th>
+    <th>Drop Point</th>
+    <th>Total Distance</th>
+    <th>Luggage</th>
+    <th>Total Fare</th> 
+    <th>Car</th> 
+    <th>Action</th>
+  
+    </tr>
+    <tbody>
+
+        
+    
+    
+                        
+            <?php
+    $user = new user();
+    $dbconnect = new Dbconnect();
+    $row1 = $user->filterpendingcab($id32, $value, $dbconnect->conn);
+    $total=0;
+    if ($row1 != "")
+    {
+
+        foreach ($row1 as $key => $row)
+        {
+
+            if($row['luggage']=="")
+            $luggage=0;
+            else
+            $luggage=$row['luggage'];
+
+
+            $rideid=$row['ride_id'];
+            echo "<tr>";
+            echo "<td>".$row['ride_date']."</td>";
+            echo "<td>".$row['from_distance']."</td>";
+            echo "<td>".$row['to_distance']."</td>";
+            echo "<td>".$row['total_distance']."</td>";
+            echo "<td>".$luggage."</td>";  
+            echo "<td>".$row['total_fare']."</td>"; 
+            echo "<td>".$row['car']."</td>";
+            echo "<td><a href='user.php?id5=".$id."&rideid=".$rideid."'>Cancel Ride</a></td>";
+
+     
+        }
+
+        
+    }
+}
+
+
+if (isset($_POST['id33']) && isset($_POST['value']))
+
+{
+    $id33 = $_POST['id33'];
+    $value = $_POST['value'];
+   
+?>
+      
+      <table border="2px solid black">
+    
+    <tr>
+    
+    <th>Ride Date</th>
+    <th>Pick Up Point</th>
+    <th>Drop Point</th>
+    <th>Total Distance</th>
+    <th>Luggage</th>
+    <th>Total Fare</th> 
+    <th>Car</th> 
+    <th>Cancel By</th>
+  
+    </tr>
+    <tbody>
+    
+    
+              
+            <?php
+    $user = new user();
+    $dbconnect = new Dbconnect();
+    $row1 = $user->filtercancelcab($id33, $value, $dbconnect->conn);
+    $total=0;
+    if ($row1 != "")
+    {
+
+        foreach ($row1 as $key => $row)
+        {
+
+         
+            if($row['status']==3)
+                    $can="admin";
+                    elseif($row['status']==0)
+                    $can="You";
+
+                    if($row['luggage']=="")
+                    $luggage=0;
+                    else
+                    $luggage=$row['luggage'];
+
+
+                    $rideid=$row['ride_id'];
+                    echo "<tr>";
+                    echo "<td>".$row['ride_date']."</td>";
+                    echo "<td>".$row['from_distance']."</td>";
+                    echo "<td>".$row['to_distance']."</td>";
+                    echo "<td>".$row['total_distance']."</td>";
+                    echo "<td>".$luggage."</td>";  
+                    echo "<td>".$row['car']."</td>";
+
+                    echo "<td>".$row['total_fare']."</td>"; 
+
+                   
+                    echo "<td>".$can."</td>";
+                   
+        }
+
+        
+    }
+}
+
+
+if (isset($_POST['id34']) && isset($_POST['value']))
+
+{
+    $id34 = $_POST['id34'];
+    $value = $_POST['value'];
+   
+?>
+      
+    
+      <table border="2px solid black">
+    
+    <tr>
+    
+    <th>Ride Date</th>
+    <th>Pick Up Point</th>
+    <th>Drop Point</th>
+    <th>Total Distance</th>
+    <th>Luggage</th>
+    <th>Total Fare</th> 
+    <th>Car</th> 
+  
+  
+    </tr>
+    <tbody>
+
+        
+    
+    
+                        
+            <?php
+    $user = new user();
+    $dbconnect = new Dbconnect();
+    $row1 = $user->filterallcab($id34, $value, $dbconnect->conn);
+    $total=0;
+    if ($row1 != "")
+    {
+
+        foreach ($row1 as $key => $row)
+        {
+
+         
+            if($row['luggage']=="")
+            $luggage=0;
+            else
+            $luggage=$row['luggage'];
+
+            $rideid=$row['ride_id'];
+            echo "<tr>";
+            echo "<td>".$row['ride_date']."</td>";
+            echo "<td>".$row['from_distance']."</td>";
+            echo "<td>".$row['to_distance']."</td>";
+            echo "<td>".$row['total_distance']."</td>";
+            echo "<td>".$luggage."</td>";  
+            echo "<td>".$row['total_fare']."</td>"; 
+            echo "<td>".$row['car']."</td>";
+
+                   
+        }
+
+        
+    }
+}
+                         
                         
 
 
