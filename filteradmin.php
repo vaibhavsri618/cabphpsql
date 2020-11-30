@@ -49,16 +49,17 @@ if (isset($_POST['id3']) && isset($_POST['text']))
     $text = $_POST['text'];
 ?>
 
-<table border="2px solid black">
+   <table border="2px solid black">
     
     <tr>
     
     <th>Userid</th>
-    <th>Email</th>
+    <th>Username</th>
     <th>Name</th>
-    <th>Date</th>
-    <th>Mobile No</th>
-    <th>Approve</th>
+    <th>Date of Sign Up</th>
+    <th>Mobile</th>
+    <th>Status</th> 
+
     </tr>
     <tbody>
 
@@ -71,15 +72,19 @@ if (isset($_POST['id3']) && isset($_POST['text']))
 
         foreach ($row1 as $key => $row)
         {
+            if($row['isblock']==1)
+            $block="Unblocked User";
+            else
+            $block="Blocked User";
+
 
             echo "<tr>";
-            echo "<td>" . $row['user_id'] . "</td>";
-            echo "<td>" . $row['user_name'] . "</td>";
-            echo "<td>" . $row['name'] . "</td>";
-            echo "<td>" . $row['dateofsignup'] . "</td>";
-            echo "<td>" . $row['mobile'] . "</td>";
-            echo "<td><a href='confirmuser.php?id=" . $row['user_id'] . "'>Yes</a> / <a href='#'>No</a></td>";
-        }
+            echo "<td>".$row['user_id']."</td>";
+            echo "<td>".$row['user_name']."</td>";
+            echo "<td>".$row['name']."</td>";
+            echo "<td>".$row['dateofsignup']."</td>";
+            echo "<td>".$row['mobile']."</td>";
+            echo "<td>".$block."</td>";   }
     }
 
 }
@@ -586,19 +591,20 @@ if (isset($_POST['id12']) && isset($_POST['value']))
     $value = $_POST['value'];
 
 ?>
-            <table border="2px solid black">
-            
+           
+           <table border="2px solid black">
+    
             <tr>
             
             <th>Userid</th>
-            <th>Email</th>
+            <th>Username</th>
             <th>Name</th>
-            <th>Date</th>
-            <th>Mobile No</th>
-            <th>Approve</th>
+            <th>Date of Sign Up</th>
+            <th>Mobile</th>
+            <th>Status</th> 
+
             </tr>
             <tbody>
-                        
                 <?php
     $admin = new adminwork();
     $dbconnect = new Dbconnect();
@@ -609,14 +615,19 @@ if (isset($_POST['id12']) && isset($_POST['value']))
         foreach ($row1 as $key => $row)
         {
 
-            echo "<tr>";
-            echo "<td>" . $row['user_id'] . "</td>";
-            echo "<td>" . $row['user_name'] . "</td>";
-            echo "<td>" . $row['name'] . "</td>";
-            echo "<td>" . $row['dateofsignup'] . "</td>";
-            echo "<td>" . $row['mobile'] . "</td>";
-            echo "<td><a href='confirmuser.php?id=" . $row['user_id'] . "'>Yes</a> / <a href='#'>No</a></td>";
+            if($row['isblock']==1)
+                    $block="Unblocked User";
+                    else
+                    $block="Blocked User";
 
+
+                    echo "<tr>";
+                    echo "<td>".$row['user_id']."</td>";
+                    echo "<td>".$row['user_name']."</td>";
+                    echo "<td>".$row['name']."</td>";
+                    echo "<td>".$row['dateofsignup']."</td>";
+                    echo "<td>".$row['mobile']."</td>";
+                    echo "<td>".$block."</td>";
         }
     }
 }

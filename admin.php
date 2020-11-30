@@ -150,7 +150,7 @@ include 'adminwork.php';
         ?>
         </div>
         <div class="w3-clear"></div>
-        <a href="admin/account.php">
+        <a href="alluser.php">
         <h4>All users</h4>
         </a>
       </div>
@@ -220,7 +220,7 @@ include 'adminwork.php';
             $admin=new adminwork();
             $dbconnect=new Dbconnect();
             $len=$admin->counttotalearning($dbconnect->conn);
-            echo '<h3>'.$len.'</h3>';
+            echo '<h3>	&#x20B9;'.$len.'</h3>';
         ?>
         </div>
         <div class="w3-clear"></div>

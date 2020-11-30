@@ -109,21 +109,22 @@ $id=$_SESSION['userdata']['userid'];
 
                 
             
+                         
+           
+
                     <table border="2px solid black">
-                        
-                        <tr>
-                        
-                        <th>Ride Date</th>
-                        <th>Pick Up Point</th>
-                        <th>Drop Point</th>
-                        <th>Total Distance</th>
-                        <th>Luggage</th>
-                        <th>Total Fare</th> 
-                        <th>Car</th> 
+    
+                    <tr>
                     
-                    
-                        </tr>
-                        <tbody>
+                    <th>Userid</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Date of Sign Up</th>
+                    <th>Mobile</th>
+                    <th>Status</th> 
+                
+                    </tr>
+                    <tbody>
 
 
                 <?

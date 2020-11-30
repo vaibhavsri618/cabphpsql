@@ -69,7 +69,7 @@ session_start();
                 <div class="section">
 
 
-               <table border="2px solid black" style="margin:20px">
+               <table border="2px solid black" style="margin:20px;margin-left:230px">
     
                     <tr>
                     
