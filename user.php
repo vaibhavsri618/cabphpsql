@@ -84,7 +84,7 @@ class user
                         header('Location:homeuser.php');
                     }
                 } else {
-                        echo "<p style='color:red;margin:10px 0px 0px 30%;'>Username or Password does'nt match</p>";
+                        echo "<p style='color:red;margin:10px 0px 0px 30%;'>Username or Password does'nt match or Please wait for admin to approve you</p>";
                 }
             }
         } 

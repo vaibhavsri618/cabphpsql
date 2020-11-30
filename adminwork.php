@@ -41,8 +41,6 @@ function newuser($conn)
 
     
 
-    echo '</tbody>
-    </table>';
 }
 
 function addlocation($drop,$distance,$radio,$conn)
@@ -164,39 +162,20 @@ function totalearning($conn)
 
 function viewlocation($conn)
 {
-    $sql8 = "SELECT * FROM `tbl_location`";
+    $sql8 = "SELECT * FROM `tbl_location` order by distance";
     $result8 = $conn->query($sql8);
+    $row1=array();
 
     if ($result8->num_rows > 0) {
   
-    echo '<table border="2px solid black">
-    
-    <tr>
-    
-    <th>Locationid</th>
-    <th>Name</th>
-    <th>Distance</th>
-    <th>Stop</th>
-    <th>Action1</th>
-    <th>Action2</th>
-   
-    </tr>
-    <tbody>';
+
     while($row8 = $result8->fetch_assoc()) {
         
-        echo "<tr>";
-        echo "<td>".$row8['id']."</td>";
-        echo "<td>".$row8['name']."</td>";
-        echo "<td>".$row8['distance']."</td>";
-        echo "<td>".$row8['is_available']."</td>";
-      
-        echo "<td><a href='deletelocation.php?id=".$row8['id']."'>Delete</a></td>
-        <td><a href='updatelocation.php?id=".$row8['id']."'>Update</a></td>";
-
-
+     array_push($row1,$row8);
 
 
     }
+    return $row1;
 }
      else {
     echo "No New User found";
@@ -204,8 +183,6 @@ function viewlocation($conn)
 
     
 
-    echo '</tbody>
-    </table>'; 
 }
 
 

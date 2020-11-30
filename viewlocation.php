@@ -67,14 +67,50 @@ session_start();
                 ?>
 
                 <div class="section">
+
+
+               <table border="2px solid black" style="margin:20px">
+    
+                    <tr>
+                    
+                    <th>Locationid</th>
+                    <th>Name</th>
+                    <th>Distance</th>
+                    <th>Stop</th>
+                    <th>Action1</th>
+                    <th>Action2</th>
+                
+                    </tr>
+                    <tbody>
                 
                 <?php
                 include 'adminwork.php';
 
                 $admin=new adminwork();
                 $dbconnect=new Dbconnect();
-                $admin->viewlocation($dbconnect->conn);
-             
+                $row1=$admin->viewlocation($dbconnect->conn);
+
+                foreach($row1 as $key=>$row8)
+                {
+
+                    echo "<tr>";
+                    echo "<td>".$row8['id']."</td>";
+                    echo "<td>".$row8['name']."</td>";
+                    echo "<td>".$row8['distance']."</td>";
+                    echo "<td>".$row8['is_available']."</td>";
+                  
+                    echo "<td><a href='deletelocation.php?id=".$row8['id']."'>Delete</a></td>
+                    <td><a href='updatelocation.php?id=".$row8['id']."'>Update</a></td>";
+            
+            
+
+
+                }
+
+
+                    echo '</tbody>
+                    </table>'; 
+                            
                   ?> 
 
                 </div>

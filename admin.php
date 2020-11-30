@@ -133,7 +133,7 @@ include 'adminwork.php';
         ?>
         </div>
         <div class="w3-clear"></div>
-        <a href="cancel.php">
+        <a href="cancelride.php">
         <h4>Cancel ride</h4>
         </a>        
       </div>

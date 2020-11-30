@@ -633,7 +633,7 @@ if (isset($_POST['id31']) && isset($_POST['value']))
         }
 
         ?> 
-        <tr><th colspan='6'>Your total Earning till now</th>
+        <tr><th colspan='6'>Your total Spending till now</th>
         <th><?php echo $total ?></th>
       </tr>
          <?php
