@@ -71,17 +71,18 @@ class user
                 if ($row['user_name']==$username && $row['password']==$password && $row['isblock']==1) {
                     if ($row['is_admin']==0) {
 
-                        setcookie("user", $username, time() + (60*60*24)); 
-
+                       
                         $_SESSION['userdata']=array('userid'=>$row['user_id'],
                         'username'=>$row['user_name'],'name'=>$row['name']);  
                         header('Location:admin.php'); 
                     } else if($row['is_admin']==1){
 
-                        setcookie("user", $username, time() + (60*60*24)); 
                         $_SESSION['userdata']=array('userid'=>$row['user_id'],
-                        'username'=>$row['user_name'],'name'=>$row['name']);  
+                        'username'=>$row['user_name'],'name'=>$row['name']);
+                        if(!isset($_SESSION['book']))  
                         header('Location:homeuser.php');
+                        else if(isset($_SESSION['book']))
+                        header('Location:bookride.php');
                     }
                 } else {
                         echo "<p style='color:red;margin:10px 0px 0px 30%;'>Username or Password does'nt match or Please wait for admin to approve you</p>";
@@ -128,6 +129,7 @@ function register($username,$password,$name,$confirmpassword,$mobile,$date,$conn
 
     if (count($error)==0) {
     
+           setcookie("user", $username, time() + (60*60*24)); 
 
      
             $sql = "INSERT INTO tbl_user (user_name, name, dateofsignup, mobile, isblock, password, is_admin)
@@ -351,7 +353,7 @@ elseif($cars=="cedsuv")
 
     
 echo " Your Ride has been booked please wait for corfirmation. <br> Total fare is 	&#x20B9;".$totalcost."/-";
-
+unset($_SESSION['book']);
 
 }
 
@@ -1513,9 +1515,100 @@ function filtercompletecab($id31, $value, $conn)
 
  }
 
+ function countnewrequest($id,$conn)
+{ 
+  $sql="SELECT * FROM tbl_ride WHERE status=2 AND customer_user_id='".$id."'";
+  $result08 = $conn->query($sql);
+  $len=0;
+
+  if ($result08->num_rows > 0) {
+      
+      $len=$result08->num_rows;
+      return $len;
+     }
+  else {
+  echo "No New User found";
+  }
+
+}
+
+function countnewriderequest($id,$conn)
+{
+
+    $sql="SELECT * FROM tbl_ride WHERE status=1 AND customer_user_id='".$id."'";
+    $result08 = $conn->query($sql);
+    $len=0;
+
+    if ($result08->num_rows > 0) {
+        
+        $len=$result08->num_rows;
+        return $len;
+       }
+    else {
+    echo "No New User found";
+    }
+
+}
+
+
+function counttotalearning($id,$conn)
+
+{
+
+
+    $sql08 = "SELECT total_fare FROM `tbl_ride` WHERE `status`=2 AND customer_user_id='".$id."'";
+    $result08 = $conn->query($sql08);
+
+    if ($result08->num_rows > 0) {
+        $row1=0;
+   
+  
+    while($row = $result08->fetch_assoc()) {
+        
+       
+        
+        $row1=$row1+$row['total_fare'];
+       
+
+    }
+   
+
+    return $row1;
+}
+     else {
+    echo "No New User found";
+    }
 
 
 
+}
+
+function calci($conn)
+{
+
+
+  $sql="SELECT * FROM tbl_location";
+    $result = $conn->query($sql);
+  
+    $row1=array();
+      
+    if ($result->num_rows > 0) {
+   
+      while($row = $result->fetch_assoc()) {
+  
+        array_push($row1,$row);
+      
+      }
+      return $row1;
+    } else {
+      echo "0 results";
+    }
+
+
+
+
+  
+}
 
 
 

@@ -11,7 +11,7 @@ session_start();
     //$_SESSION['cart1'] = array();
 
     session_destroy();
-    header("Location:cabhome.php");
+    header("Location:index.php");
 
 
 

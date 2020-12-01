@@ -30,7 +30,7 @@ $id=$_SESSION['userdata']['userid'];
 
                     <li class="li"><a href="#">View User</a>
                     <ul class="ul">
-                    <li class="li"><a href="viewnewuser.php">View New User
+                    <li class="li"><a href="viewnewuser.php">View New/Block User
                     </li>
                     <li class="li"><a href="approveduser.php">View Approved User
                     </li>
@@ -137,7 +137,9 @@ $id=$_SESSION['userdata']['userid'];
                 echo "<td>".$row['name']."</td>";
                 echo "<td>".$row['dateofsignup']."</td>";
                 echo "<td>".$row['mobile']."</td>";
-                echo "<td><a href='confirmuser.php?id=".$row['user_id']."'>Yes</a> / <a href='#'>No</a></td>";
+                echo "<td><a href='confirmuser.php?id=".$row['user_id']."'>Yes</a> / 
+                
+                <a href='adminwork.php?id52=".$row['user_id']."'>Delete</a></td>";
                         }
 
              
@@ -167,7 +169,7 @@ $id=$_SESSION['userdata']['userid'];
                         type: 'post',
                         url: 'filteradmin.php',
                         data:{
-                           id2:id,
+                           id1:id,
                            text:text
 
                         },

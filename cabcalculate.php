@@ -1,10 +1,15 @@
 <?php
 
+
+include 'user.php';
+
 if(isset($_POST['pick']) && isset($_POST['drop']) && isset($_POST['cars']) && isset($_POST['weight']))
 {
    
-$area=array("Charbagh"=>0,"Indranagar"=>10,"BBD"=>30,"Barabanki"=>60,"Faizabad"=>100,"Basti"=>150,"Gorakhpur"=>210);
 
+    
+
+   
 $distance1=0;
 $distance2=0;
 $totaldistance;
@@ -20,20 +25,22 @@ $weight=$_POST['weight'];
 if($pick!="0" && $drop!="10")
 {
 
-
+    $user=new user();
+    $dbconnect=new DBconnect();
+    $area=$user->calci($dbconnect->conn);
 
 
 foreach($area as $key=>$val)
 {
     
-    if($key==$pick)
+    if($val['name']==$pick)
     {
-        $distance1=$val;
+        $distance1=$val['distance'];
     }
 
-    if($key==$drop)
+    if($val['name']==$drop)
     {
-        $distance2=$val;
+        $distance2=$val['distance'];
     }
   
 }

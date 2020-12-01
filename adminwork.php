@@ -13,6 +13,26 @@ if(isset($_GET['id3']))
 }
 
 
+if(isset($_GET['id50']))
+
+{
+    $id50=$_GET['id50'];
+    $admin=new adminwork();
+    $dbcon=new Dbconnect();
+    $admin->blockuser($id50,$dbcon->conn);
+}
+
+
+if(isset($_GET['id52']))
+
+{
+    $id52=$_GET['id52'];
+    $admin=new adminwork();
+    $dbcon=new Dbconnect();
+    $admin->deleteuser($id52,$dbcon->conn);
+}
+
+
 class adminwork{
 
 function newuser($conn)
@@ -630,7 +650,7 @@ function filteradminnewrideuser($id4,$text,$conn)
     if($text!="none")
     {
 
-    $sql = "SELECT * FROM tbl_ride WHERE status=0  ORDER BY ".$text." ASC";
+    $sql = "SELECT * FROM tbl_ride WHERE status=1  ORDER BY ".$text." ASC";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
@@ -647,7 +667,7 @@ function filteradminnewrideuser($id4,$text,$conn)
 }
 else
 {
-    $sql = "SELECT * FROM tbl_ride WHERE status=0";
+    $sql = "SELECT * FROM tbl_ride WHERE status=1";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
@@ -1282,6 +1302,70 @@ else if($value=="today")
 
 
 
+
+ }
+
+ function blockuser($id50,$conn)
+
+ {
+
+
+
+  $sql = "UPDATE tbl_user SET isblock=0 WHERE user_id=".$id50."";
+    if ($conn->query($sql) === TRUE) {
+    echo '<script type="text/javascript">; 
+    alert("User Block successfully"); 
+    window.location= "approveduser.php";
+    </script>';   
+    } else {
+    echo "Error updating record: " . $conn->error;
+    }
+
+
+ }
+
+
+ function deleteuser($id52,$conn)
+ {
+
+
+  $sql = "DELETE FROM tbl_user WHERE user_id='".$id52."'";
+
+if ($conn->query($sql) === TRUE) {
+  echo '<script type="text/javascript">; 
+    alert("User Deleted successfully"); 
+    window.location= "viewnewuser.php";
+    </script>';   
+} else {
+  echo "Error deleting record: " . $conn->error;
+}
+
+
+
+ }
+
+
+ function viewinvoice($id54,$rid,$conn)
+
+ {
+
+
+
+  $sql="SELECT * FROM tbl_ride WHERE customer_user_id='".$id54."' AND ride_id='".$rid."'";
+  $result = $conn->query($sql);
+
+  $row1=array();
+    
+  if ($result->num_rows > 0) {
+ 
+    while($row = $result->fetch_assoc()) {
+
+      array_push($row1,$row);
+    
+    }
+    return $row1;
+  } 
+  
 
  }
 

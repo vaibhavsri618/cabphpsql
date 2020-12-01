@@ -26,7 +26,7 @@ include 'adminwork.php';
 
                     <li class="li"><a href="#">View User</a>
                     <ul class="ul">
-                    <li class="li"><a href="viewnewuser.php">View New User
+                    <li class="li"><a href="viewnewuser.php">View New/Block User
                     </li>
                     <li class="li"><a href="approveduser.php">View Approved User
                     </li>

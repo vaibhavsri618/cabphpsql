@@ -41,9 +41,6 @@ $(document).ready(function(){
         var weight=$("#weight").val();
         console.log(pick);
 
-        document.getElementById("submit").style.visibility = "hidden";
-        document.getElementById("book").style.visibility = "visible";
-
 
 
 
@@ -65,12 +62,18 @@ $(document).ready(function(){
             
             $("#error1").show();
             $("#res").hide();
+            $(this).show();
+            $("#book").hide();
            
         }
         else
         {
         $("#error1").hide();
         $("#res").show();
+       
+       
+       
+
         }
 
         if(drop=="10")
@@ -78,11 +81,17 @@ $(document).ready(function(){
            
             $("#error2").show();
             $("#res").hide();
+            $(this).show();
+            $("#book").hide();
+    
         }
         else
         {
         $("#error2").hide();
         $("#res").show();
+       
+
+       
         }
 
         if(cars=="20")
@@ -90,11 +99,17 @@ $(document).ready(function(){
            
             $("#error3").show();
             $("#res").hide();
+            $(this).show();
+            $("#book").hide();
         }
         else
         {
+            
         $("#error3").hide();
         $("#res").show();
+       
+
+       
         }
        
 
@@ -103,17 +118,31 @@ $(document).ready(function(){
             $("#error").html("Drop and pickup can't be same");
             $("#error").show();
             $("#res").hide();
+           
+            $(this).show();
+            alert("location same");
+           
         }
         else
         {
+            $("book").show();
             $("#error").hide();
             $("#res").show();
+          
+
+       
             
         }
 
+        if(drop!=pick && drop!="0" && pick!=0)
+        {
+
+            document.getElementById("book").style.visibility="visible";
+            document.getElementById("submit").style.visibility="hidden";
         
         console.log(cars);
         console.log(weight);
+        
 
 
 
@@ -133,6 +162,7 @@ $(document).ready(function(){
           
         }
       });
+    }
 
     });
 
@@ -143,6 +173,8 @@ $(document).ready(function(){
         return false;
 
     });
+
+
 
 
 

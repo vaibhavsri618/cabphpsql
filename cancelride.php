@@ -30,7 +30,7 @@ if(isset($_SESSION['userdata']['name']))
 
                     <li class="li"><a href="#">View User</a>
                     <ul class="ul">
-                    <li class="li"><a href="viewnewuser.php">View New User
+                    <li class="li"><a href="viewnewuser.php">View New/Block User
                     </li>
                     <li class="li"><a href="approveduser.php">View Approved User
                     </li>
@@ -131,6 +131,7 @@ if(isset($_SESSION['userdata']['name']))
                     <th>Customer id</th> 
                     <th>Car</th> 
                     <th>Cancel by</th>
+                    <th>View</th>
                   
                   
                     </tr>
@@ -160,18 +161,20 @@ if(isset($_SESSION['userdata']['name']))
                     $luggage=$row['luggage'];
 
 
-         echo        "<tr>";
-         echo "<td>".$row['ride_id']."</td>";
-         echo "<td>".$row['ride_date']."</td>";
-         echo "<td>".$row['from_distance']."</td>";
-         echo "<td>".$row['to_distance']."</td>";
-         echo "<td>".$row['total_distance']."</td>";
-         echo "<td>".$luggage."</td>";  
-         echo "<td>".$row['total_fare']."</td>"; 
-         echo "<td>".$row['customer_user_id']."</td>";
-         echo "<td>".$row['car']."</td>";
-         echo "<td>".$can."</td>";
-     
+                    echo "<tr>";
+                    echo "<td>".$row['ride_id']."</td>";
+                    echo "<td>".$row['ride_date']."</td>";
+                    echo "<td>".$row['from_distance']."</td>";
+                    echo "<td>".$row['to_distance']."</td>";
+                    echo "<td>".$row['total_distance']."</td>";
+                    echo "<td>".$luggage."</td>";  
+                    echo "<td>".$row['total_fare']."</td>"; 
+                    echo "<td>".$row['customer_user_id']."</td>";
+                    echo "<td>".$row['car']."</td>";
+                    echo "<td>".$can."</td>";
+                    echo "<td><a href='invoice.php?id54=".$row['customer_user_id']."&rid=".$row['ride_id']."'>Invoice</a></td>";
+                            
+                
      
                 }
                 }

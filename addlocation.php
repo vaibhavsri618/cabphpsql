@@ -24,7 +24,7 @@ session_start();
 
                     <li class="li"><a href="#">View User</a>
                     <ul class="ul">
-                    <li class="li"><a href="viewnewuser.php">View New User
+                    <li class="li"><a href="viewnewuser.php">View New/Block User
                     </li>
                     <li class="li"><a href="approveduser.php">View Approved User
                     </li>
@@ -76,7 +76,7 @@ session_start();
                 <form action="#" method="post">
                 <h2 id="dl">Add Drop Location</h2>
                 <label> Drop Location: </label>
-                <input type="text" name="drop" placeholder="drop" id="drop"><br>
+                <input type="text" name="drop" placeholder="drop" id="drop" require><br>
                 <label> Distance: </label>
                 <input type="number" placeholder="distance" name="distance" id="distance"><br>
                 <label> Stop: </label>
@@ -93,9 +93,13 @@ session_start();
 
                     if(isset($_POST['btnsubmit']))
                     {
+                        if(isset($_POST['stop']) && isset($_POST['drop']))
+                        {
+                       
                         $drop=$_POST['drop'];
                         $distance=$_POST['distance']; 
                         $radio=$_POST['stop'];
+                    
                      
                     
 
@@ -103,6 +107,11 @@ session_start();
                 $dbconnect=new Dbconnect();
                 $admin->addlocation($drop,$distance,$radio,$dbconnect->conn);
                     }
+                    else
+                    {
+                    echo "<script>alert('Field cant be null')</script>";
+                    }
+                }
                   ?> 
 
                 </div>

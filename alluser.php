@@ -30,7 +30,7 @@ $id=$_SESSION['userdata']['userid'];
 
                     <li class="li"><a href="#">View User</a>
                     <ul class="ul">
-                    <li class="li"><a href="viewnewuser.php">View New User
+                    <li class="li"><a href="viewnewuser.php">View New/Block User
                     </li>
                     <li class="li"><a href="approveduser.php">View Approved User
                     </li>
@@ -122,7 +122,7 @@ $id=$_SESSION['userdata']['userid'];
                     <th>Date of Sign Up</th>
                     <th>Mobile</th>
                     <th>Status</th> 
-                
+               
                     </tr>
                     <tbody>
 
@@ -147,6 +147,7 @@ $id=$_SESSION['userdata']['userid'];
                     echo "<td>".$row['dateofsignup']."</td>";
                     echo "<td>".$row['mobile']."</td>";
                     echo "<td>".$block."</td>";
+                    
                 
                     }
                     ?> 

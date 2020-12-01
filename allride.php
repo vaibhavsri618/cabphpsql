@@ -123,7 +123,7 @@ $id=$_SESSION['userdata']['userid'];
                     <th>Luggage</th>
                     <th>Total Fare</th> 
                     <th>Car</th> 
-                  
+                   
                   
                     </tr>
                     <tbody>
@@ -152,6 +152,8 @@ $id=$_SESSION['userdata']['userid'];
                     echo "<td>".$luggage."</td>";  
                     echo "<td>".$row['total_fare']."</td>"; 
                     echo "<td>".$row['car']."</td>";
+
+                   
 
                     
                    

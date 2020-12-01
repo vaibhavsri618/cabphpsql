@@ -32,7 +32,7 @@ $id=$_SESSION['userdata']['userid'];
 
                     <li class="li"><a href="#">View User</a>
                     <ul class="ul">
-                    <li class="li"><a href="viewnewuser.php">View New User
+                    <li class="li"><a href="viewnewuser.php">View New/Block User
                     </li>
                     <li class="li"><a href="approveduser.php">View Approved User
                     </li>
@@ -133,6 +133,7 @@ $id=$_SESSION['userdata']['userid'];
                     <th>Cid</th>
                     <th>Car</th>
                     <th>Approve</th>
+                    <th>View</th>
                     </tr>
                     <tbody>
                 
@@ -161,6 +162,8 @@ $id=$_SESSION['userdata']['userid'];
                     echo "<td>".$row7['car']."</td>";
                     echo "<td><a href='confirmride.php?id=".$row7['ride_id']."'>Yes</a> / 
                     <a href='adminwork.php?id3=".$row7['ride_id']."'>No</a></td>";
+                    echo "<td><a href='invoice.php?id54=".$row7['customer_user_id']."&rid=".$row7['ride_id']."'>Invoice</a></td>";
+                  
             
 
 

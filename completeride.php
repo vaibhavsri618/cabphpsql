@@ -29,7 +29,7 @@ if(isset($_SESSION['userdata']['name']))
 
                     <li class="li"><a href="#">View User</a>
                     <ul class="ul">
-                    <li class="li"><a href="viewnewuser.php">View New User
+                    <li class="li"><a href="viewnewuser.php">View New/Delete User
                     </li>
                     <li class="li"><a href="approveduser.php">View Approved User
                     </li>
@@ -135,6 +135,9 @@ if(isset($_SESSION['userdata']['name']))
                   
                     <th>Total Fare</th>   
 
+                    <th>View</th>
+                  
+
                     
                    
                   
@@ -169,7 +172,9 @@ if(isset($_SESSION['userdata']['name']))
                 
                     echo "<td>".$row['customer_user_id']."</td>";
                     echo "<td>".$row['car']."</td>";
-                    echo "<td>".$row['total_fare']."</td>"; 
+                    echo "<td>".$row['total_fare']."</td>";
+                    echo "<td><a href='invoice.php?id54=".$row['customer_user_id']."&rid=".$row['ride_id']."'>Invoice</a></td>";
+                     
 
                     $total=$total+$row['total_fare'];
      
@@ -177,7 +182,7 @@ if(isset($_SESSION['userdata']['name']))
        
                 }
                 ?> 
-                <tr><th colspan='8'>Your total Earning till now</th>
+                <tr><th colspan='9'>Your total Earning till now</th>
                 <th><?php echo $total ?></th>
               </tr>
                  

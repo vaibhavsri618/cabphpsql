@@ -30,7 +30,7 @@ if(isset($_SESSION['userdata']['name']))
 
                     <li class="li"><a href="#">View User</a>
                     <ul class="ul">
-                    <li class="li"><a href="viewnewuser.php">View New User
+                    <li class="li"><a href="viewnewuser.php">View New/Block User
                     </li>
                     <li class="li"><a href="approveduser.php">View Approved User
                     </li>
@@ -139,7 +139,7 @@ if(isset($_SESSION['userdata']['name']))
          echo "<td>".$row['dateofsignup']."</td>";
          echo "<td>".$row['mobile']."</td>";
      
-         echo "<td><a href='confirmuser.php?id=".$row['user_id']."'>Block</a>";
+         echo "<td><a href='adminwork.php?id50=".$row['user_id']."'>Block</a>";
                 }
                   ?> 
 
