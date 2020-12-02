@@ -1,6 +1,8 @@
 <?php 
 
 include 'user.php';
+include 'header1.php';
+
 
 if(isset($_SESSION['userdata']['username']))
 {
@@ -22,7 +24,7 @@ $id=$_SESSION['userdata']['userid'];
                 <h3 style="color:white">Hello <?php echo $_SESSION["userdata"]["name"] ?></h3>
 
                 <ul>
-                    <li class="li">Dashboard</li>
+                    <li class="li"><a href="bookride.php">Dashboard</li>
                     <li class="li"><a href="bookride.php">Book a Ride </li>
                     <li class="li"><a href="#">Rides</a>
                     <ul class="ul">
@@ -35,7 +37,6 @@ $id=$_SESSION['userdata']['userid'];
                     <li class="li"><a href="allride.php"
                     >All Rides</li>
                     </ul></li>
-                    <li class="li"><a href="completeduserride.php">Check how much you have spend on our ride </li>
                     
                   
                   
@@ -45,7 +46,7 @@ $id=$_SESSION['userdata']['userid'];
                     update</li>
                    
                     <li class="li"><a href="changepass.php"
-                    >Change Password</li>
+                    >Change Password</a></li>
                     </ul></li>
                   
                    
@@ -55,14 +56,7 @@ $id=$_SESSION['userdata']['userid'];
 
             </div>
             <div class="container"> 
-                <?php
-                echo '<a href="Logout.php" id="a">Logout</a>';
-                if (isset($_SESSION['userdata'])) {
-                    echo "<h1 style='margin:10px 0px 0px 25%'>Welcome 
-                        ".$_SESSION["userdata"]["username"]."</h1>";
-                }
-                
-                ?>
+               
 
                 <div class="section">
                 
@@ -70,15 +64,14 @@ $id=$_SESSION['userdata']['userid'];
          
                 ?>
 
-                    <br>
-                    <br>
-                    <label>Sort by: </label>
+                    
+                    <label style="margin-top:10px;">Sort by: 
                     <select id="select">
                         <option value="none">None</option>
                         <option value="total_fare">Fare</option>
                         <option value="total_distance">Distance</option>
                         <option value="ride_date">Date</option>
-                    </select>
+                    </select></label>
 
 
                     <label style="float:right;margin-top:20px">Filter By Date:
@@ -131,6 +124,9 @@ $id=$_SESSION['userdata']['userid'];
                 $user=new user();
                 $dbconnect=new Dbconnect();
                 $row1=$user->pendingride($id,$dbconnect->conn);
+
+                if(isset($row1))
+                {
                
                 foreach($row1 as $key=>$row)
                 {
@@ -151,7 +147,10 @@ $id=$_SESSION['userdata']['userid'];
                     echo "<td>".$row['car']."</td>";
                     echo "<td><a href='user.php?id5=".$id."&rideid=".$rideid."'>Cancel Ride</a></td>";
                 }
+            }
                   ?> 
+                  </tbody>
+            </table>
                     </div>
                 </div>
 
@@ -201,7 +200,7 @@ $.ajax({
         type: 'post',
         url: 'filteruser.php',
         data:{
-        id14:id,
+        id54:id,
         value:value
 
         },

@@ -81,7 +81,23 @@ footer
     padding: 8px 30px;
     margin-left: 50px;
 }
-#book
+
+
+.register
 {
-    visibility: hidden;
+
+    width: 550px;
+    height: auto;
+    background-color: whitesmoke;
+    margin-left: 100px;
+    border-radius: 10px;
+    margin-top:50px
 }
+
+.form
+{
+
+margin-left: 30px;
+
+}
+

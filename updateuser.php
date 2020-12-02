@@ -1,10 +1,12 @@
 <?php 
 
 include 'user.php';
+include 'header1.php';
 
 if(isset($_SESSION['userdata']['username']))
 {
 $id=$_SESSION['userdata']['userid'];
+
 ?>
 
 
@@ -20,7 +22,7 @@ $id=$_SESSION['userdata']['userid'];
                 <h3 style="color:white">Hello <?php echo $_SESSION["userdata"]["name"] ?></h3>
 
                 <ul>
-                    <li class="li">Dashboard</li>
+                    <li class="li"><a href="homeuser.php">Dashboard</li>
                     <li class="li"><a href="bookride.php">Book a Ride </li>
                     <li class="li"><a href="#">Rides</a>
                     <ul class="ul">
@@ -33,7 +35,6 @@ $id=$_SESSION['userdata']['userid'];
                     <li class="li"><a href="allride.php"
                     >All Rides</li>
                     </ul></li>
-                    <li class="li"><a href="completeduserride.php">Check how much you have spend on our ride </li>
                     
                   
                   
@@ -43,7 +44,7 @@ $id=$_SESSION['userdata']['userid'];
                     update</li>
                    
                     <li class="li"><a href="changepass.php"
-                    >Change Password</li>
+                    >Change Password</a></li>
                     </ul></li>
                   
                    
@@ -53,22 +54,14 @@ $id=$_SESSION['userdata']['userid'];
 
             </div>
             <div class="container"> 
-                <?php
-                echo '<a href="Logout.php" id="a">Logout</a>';
-                if (isset($_SESSION['userdata'])) {
-                    echo "<h1 style='margin:10px 0px 0px 25%'>Welcome 
-                        ".$_SESSION["userdata"]["username"]."</h1>";
-                }
-                
-                ?>
+              
+             
 
                 <div class="section">
                 
-                <?php
-         
-                ?>
+                
 
-               
+             
 
 
                 <?php

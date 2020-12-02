@@ -1,7 +1,10 @@
 <?php 
 
-session_start();
+
 include 'adminwork.php';
+
+include 'header.php';
+
 
 if(isset($_SESSION['userdata']['name']))
 {
@@ -47,7 +50,9 @@ $id=$_SESSION['userdata']['userid'];
                     <li class="li"><a href="cancelride.php"
                     >Cancelled</li>
                     <li class="li"><a href="completeride.php">
-                    Completed</a></li></ul></li>
+                    Completed</a></li>
+                    <li class="li"><a href="allrideadmin.php"
+                    >All Rides</a></li></ul></li>
               
 
 
@@ -58,6 +63,16 @@ $id=$_SESSION['userdata']['userid'];
                    
                     <li class="li"><a href="viewlocation.php">
                     View Location</a></li></ul></li>
+
+                    <li class="li"><a href="#">Profile</a>
+                    <ul class="ul">
+                    <li class="li"><a href="updateadmin.php">
+                    update</li>
+                   
+                    <li class="li"><a href="changeadminpass.php"
+                    >Change Password</a></li>
+                    </ul></li>
+                  
                     
 
                   
@@ -70,18 +85,11 @@ $id=$_SESSION['userdata']['userid'];
 
             </div>
             <div class="container"> 
-                <?php
-                echo '<a href="Logout.php" id="a">Logout</a>';
-                if (isset($_SESSION['userdata'])) {
-                    echo "<h1 style='margin:10px 0px 0px 35%'>Welcome 
-                        ".$_SESSION["userdata"]["username"]."</h1>";
-                }
-                ?>
+              
 
                 <div class="section">
 
-                <br>
-                    <br>
+            
                     <label>Sort By:</label>
                     <select id="select">
                         <option value="none">None</option>

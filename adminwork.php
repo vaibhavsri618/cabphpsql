@@ -13,6 +13,26 @@ if(isset($_GET['id3']))
 }
 
 
+if (isset($_POST['update2'])) {
+  $id = $_GET['id6'];
+  $name = $_POST['name'];
+  $mobile = $_POST['mobile'];
+  $user = new adminwork();
+  $dbcon = new Dbconnect();
+  $user->updateadmin2($id, $name, $mobile, $dbcon->conn);
+}
+
+if (isset($_POST['update3'])) {
+  $id = $_GET['id7'];
+  $name = $_POST['oldpass'];
+  $newpass = $_POST['newpass'];
+  $conpass = $_POST['conpass'];
+  $user = new adminwork();
+  $dbcon = new Dbconnect();
+  $user->updateadminpass($id, $name, $newpass, $conpass, $dbcon->conn);
+}
+
+
 if(isset($_GET['id50']))
 
 {
@@ -61,6 +81,24 @@ function newuser($conn)
 
     
 
+}
+
+function adminallride($conn)
+{
+    $row2 = array();
+    $sql =
+        "SELECT * FROM tbl_ride";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+       
+        while ($row = $result->fetch_assoc()) {
+            array_push($row2, $row);
+        }
+        return $row2;
+    } else {
+        echo "0 results";
+    }
 }
 
 function addlocation($drop,$distance,$radio,$conn)
@@ -134,8 +172,6 @@ function newride($conn)
 
     
 
-    echo '</tbody>
-    </table>'; 
 }
 
 function totalearning($conn)
@@ -534,7 +570,7 @@ function filteradminnewuser($id1,$text,$conn)
       echo "0 results";
     }
 }
-else
+elseif($text=="none")
 {
     $sql = "SELECT * FROM tbl_user WHERE is_admin=1 AND isblock=0";
     $result = $conn->query($sql);
@@ -579,7 +615,7 @@ function filteradminapproveduser($id2,$text,$conn)
       echo "0 results";
     }
 }
-else
+elseif($text=="none")
 {
     $sql = "SELECT * FROM tbl_user WHERE is_admin=1 AND isblock=1";
     $result = $conn->query($sql);
@@ -596,6 +632,7 @@ else
       echo "0 results";
     }
 }
+
 
 
 }
@@ -622,7 +659,7 @@ function filteradminalluser($id3,$text,$conn)
       echo "0 results";
     }
 }
-else
+elseif($text=="none")
 {
     $sql = "SELECT * FROM tbl_user WHERE is_admin=1";
     $result = $conn->query($sql);
@@ -665,7 +702,7 @@ function filteradminnewrideuser($id4,$text,$conn)
       echo "0 results";
     }
 }
-else
+elseif($text=="none")
 {
     $sql = "SELECT * FROM tbl_ride WHERE status=1";
     $result = $conn->query($sql);
@@ -707,7 +744,7 @@ function filteradmincancelride($id5,$text,$conn)
       echo "0 results";
     }
 }
-else
+elseif($text=="none")
 {
     $sql = "SELECT * FROM tbl_ride WHERE status=0 OR status=3";
     $result = $conn->query($sql);
@@ -753,7 +790,7 @@ function filteradmincompleteride($id6,$text,$conn)
       echo "0 results";
     }
 }
-else
+elseif($text=="none")
 {
     $sql = "SELECT * FROM tbl_ride WHERE status=2";
     $result = $conn->query($sql);
@@ -839,6 +876,31 @@ else if($value=="today")
   } else {
     echo "0 results";
   }
+}
+  elseif($value=="none")
+  {
+    $sql7 = "SELECT * FROM `tbl_ride` WHERE `status`=1";
+    $result7 = $conn->query($sql7);
+
+    $row1=array();
+
+    if ($result7->num_rows > 0) {
+   
+    while($row7 = $result7->fetch_assoc()) {
+
+        array_push($row1,$row7);
+        
+     
+
+
+
+    }
+    return $row1;
+}
+     else {
+    echo "No New User found";
+    }
+  
 
 }
 
@@ -909,6 +971,35 @@ else if($value=="today")
     echo "0 results";
   }
 
+
+ }
+
+ elseif($value=="none")
+ {
+
+
+  $sql08 = "SELECT * FROM `tbl_ride` WHERE `status`=0 OR `status`=3";
+  $result08 = $conn->query($sql08);
+
+  if ($result08->num_rows > 0) {
+      $row1=array();
+ 
+
+  while($row = $result08->fetch_assoc()) {
+      
+     
+      
+      array_push($row1,$row);
+     
+
+  }
+ 
+
+  return $row1;
+}
+   else {
+  echo "No New User found";
+  }
 
  }
 
@@ -983,6 +1074,36 @@ else if($value=="today")
   
   
    }
+
+
+   elseif($value=="none")
+
+   {
+
+    $sql08 = "SELECT * FROM `tbl_ride` WHERE `status`=2";
+    $result08 = $conn->query($sql08);
+
+    if ($result08->num_rows > 0) {
+        $row1=array();
+   
+  
+    while($row = $result08->fetch_assoc()) {
+        
+       
+        
+        array_push($row1,$row);
+       
+
+    }
+   
+
+    return $row1;
+}
+     else {
+    echo "No New User found";
+    }
+
+   }
   
  }
 
@@ -992,7 +1113,7 @@ else if($value=="today")
  {
 
 
-
+  $conn1=$conn;
   if($value=="week")
   {
     $sql="SELECT * FROM tbl_user WHERE dateofsignup > DATE_SUB(NOW(), INTERVAL 1 WEEK) AND isblock=0 ORDER BY user_name ASC";
@@ -1053,6 +1174,32 @@ else if($value=="today")
     }
   
   
+   }
+
+   else if($value=="none")
+   {
+     
+    $row1=array();
+    $sql = "SELECT * FROM tbl_user WHERE isblock=0";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+   
+   
+    while($row = $result->fetch_assoc()) {
+
+        array_push($row1,$row);
+       
+
+
+
+    }
+
+    return $row1;
+}
+     else {
+    echo "No New User found";
+    }
    }
   
 
@@ -1130,6 +1277,32 @@ else if($value=="today")
   
   
    }
+
+   else if($value=="none")
+   {
+    $sql08 = "SELECT * FROM tbl_user WHERE isblock=1 AND is_admin=1";
+    $result08 = $conn->query($sql08);
+
+    if ($result08->num_rows > 0) {
+        $row1=array();
+   
+  
+    while($row = $result08->fetch_assoc()) {
+        
+       
+        
+        array_push($row1,$row);
+       
+
+    }
+   
+
+    return $row1;
+}
+     else {
+    echo "No New User found";
+    }
+   }
   
 
 
@@ -1204,6 +1377,38 @@ else if($value=="today")
   
   
    }
+
+
+   elseif($value=="none")
+   {
+
+
+    $sql08 = "SELECT * FROM `tbl_user` WHERE `is_admin`=1";
+    $result08 = $conn->query($sql08);
+
+    if ($result08->num_rows > 0) {
+        $row1=array();
+   
+  
+    while($row = $result08->fetch_assoc()) {
+        
+       
+        
+        array_push($row1,$row);
+       
+
+    }
+   
+
+    return $row1;
+}
+     else {
+    echo "No New User found";
+    }
+
+    
+
+   }
   
 
 
@@ -1218,6 +1423,10 @@ else if($value=="today")
  {
 
 
+
+  if($value!="none")
+
+  {
 
 
   $sql="SELECT * FROM tbl_ride WHERE `car`='".$value."' AND status=2";
@@ -1236,7 +1445,38 @@ else if($value=="today")
     } else {
       echo "0 results";
     }
+  }
 
+  elseif($value=="none")
+
+  {
+
+
+    $sql08 = "SELECT * FROM `tbl_ride` WHERE `status`=2";
+    $result08 = $conn->query($sql08);
+
+    if ($result08->num_rows > 0) {
+        $row1=array();
+   
+  
+    while($row = $result08->fetch_assoc()) {
+        
+       
+        
+        array_push($row1,$row);
+       
+
+    }
+   
+
+    return $row1;
+}
+     else {
+    echo "No New User found";
+    }
+
+
+  }
 
 
 
@@ -1249,7 +1489,8 @@ else if($value=="today")
  {
 
 
-
+if($value!="none")
+{
 
   $sql="SELECT * FROM tbl_ride WHERE `car`='".$value."' AND (status=0 OR status=3)";
     $result = $conn->query($sql);
@@ -1268,7 +1509,37 @@ else if($value=="today")
       echo "0 results";
     }
 
+  }
 
+  elseif($value=="none")
+
+  {
+
+
+    $sql08 = "SELECT * FROM `tbl_ride` WHERE `status`=0 OR `status`=3";
+    $result08 = $conn->query($sql08);
+
+    if ($result08->num_rows > 0) {
+        $row1=array();
+   
+  
+    while($row = $result08->fetch_assoc()) {
+        
+       
+        
+        array_push($row1,$row);
+       
+
+    }
+   
+
+    return $row1;
+}
+     else {
+    echo "No New User found";
+    }
+
+  }
 
 
  }
@@ -1281,7 +1552,8 @@ else if($value=="today")
  {
 
 
-
+if($value!="none")
+{
 
   $sql="SELECT * FROM tbl_ride WHERE `car`='".$value."' AND status=1";
     $result = $conn->query($sql);
@@ -1299,7 +1571,34 @@ else if($value=="today")
     } else {
       echo "0 results";
     }
+  }
+  elseif($value=="none")
+  {
+    $sql08 = "SELECT * FROM `tbl_ride` WHERE `status`=1";
+    $result08 = $conn->query($sql08);
 
+    if ($result08->num_rows > 0) {
+        $row1=array();
+   
+  
+    while($row = $result08->fetch_assoc()) {
+        
+       
+        
+        array_push($row1,$row);
+       
+
+    }
+   
+
+    return $row1;
+}
+     else {
+    echo "No New User found";
+    }
+
+
+  }
 
 
 
@@ -1368,6 +1667,299 @@ if ($conn->query($sql) === TRUE) {
   
 
  }
+
+
+ function updateadmin($id, $conn)
+ {
+     $sql = "SELECT * FROM tbl_user WHERE user_id=" . $id . "";
+     $result = $conn->query($sql);
+
+     if ($result->num_rows > 0) {
+         $row2 = array();
+         while ($row = $result->fetch_assoc()) {
+             array_push($row2, $row);
+         }
+         return $row2;
+     } else {
+         echo "0 results";
+     }
+ }
+
+ function updateadmin2($id, $name, $mobile, $conn)
+ {
+     $sql =
+         "UPDATE tbl_user SET name='" .
+         $name .
+         "' , mobile='" .
+         $mobile .
+         "' WHERE user_id=" .
+         $id .
+         "";
+
+     if ($conn->query($sql) === true) {
+         echo '<script type="text/javascript">; 
+     alert("Update Done successfully"); 
+     window.location= "updateadmin.php";
+     </script>';
+     } else {
+         echo "Error updating record: " . $conn->error;
+     }
+ }
+
+ function updateadminpass($id, $name, $newpass, $conpass, $conn)
+ {
+     $count = 0;
+     $pass = md5($name);
+     $newpass = md5($newpass);
+     $conpass = md5($conpass);
+     $sql = "SELECT `password` FROM `tbl_user` WHERE `user_id`=" . $id . "";
+     $result = $conn->query($sql);
+
+     if ($result->num_rows > 0) {
+         while ($row = $result->fetch_assoc()) {
+             $dbpass = $row['password'];
+         }
+         if ($pass == $dbpass) {
+             $count = 1;
+         } else {
+             $count = 0;
+         }
+     }
+
+     if ($count == 1 && $newpass == $conpass) {
+         $sql2 =
+             "UPDATE tbl_user SET password='" .
+             $newpass .
+             "' WHERE user_id=" .
+             $id .
+             "";
+
+         if ($conn->query($sql2) === true) {
+             echo '<script type="text/javascript">; 
+         alert("Password Changed successfully ,Please relogin agn with new pass"); 
+         window.location= "Logout.php";
+         </script>';
+         }
+     } else {
+         echo '<script type="text/javascript">; 
+         alert("Password does not matched "); 
+         window.location= "changeadminpass.php";
+        
+         </script>';
+     }
+ }
+
+
+
+
+ function sortalluserride($id1,$text,$conn)
+
+{
+
+    $row1=array();
+    if($text!="none")
+    {
+
+    $sql = "SELECT * FROM tbl_ride ORDER BY ".$text." ASC";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+   
+      while($row = $result->fetch_assoc()) {
+
+        array_push($row1,$row);
+      
+      }
+      return $row1;
+    } else {
+      echo "0 results";
+    }
+}
+elseif($text=="none")
+{
+    $sql = "SELECT * FROM tbl_user WHERE is_admin=1 AND isblock=0";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+   
+      while($row = $result->fetch_assoc()) {
+
+        array_push($row1,$row);
+      
+      }
+      return $row1;
+    } else {
+      echo "0 results";
+    }
+}
+}
+
+
+
+
+function filteradminweek($id7,$value,$conn)
+
+
+{
+
+if($value=="week")
+{
+  $sql="SELECT * FROM tbl_ride WHERE ride_date > DATE_SUB(NOW(), INTERVAL 1 WEEK)  ORDER BY total_fare ASC";
+  $result = $conn->query($sql);
+
+  $row1=array();
+    
+  if ($result->num_rows > 0) {
+ 
+    while($row = $result->fetch_assoc()) {
+
+      array_push($row1,$row);
+    
+    }
+    return $row1;
+  } else {
+    echo "0 results";
+  }
+}
+else if($value=="month")
+{
+
+  $sql="SELECT * FROM tbl_ride WHERE ride_date > DATE_SUB(NOW(), INTERVAL 1 MONTH)  ORDER BY total_fare ASC";
+  $result = $conn->query($sql);
+  $row1=array();
+    
+  if ($result->num_rows > 0) {
+ 
+    while($row = $result->fetch_assoc()) {
+
+      array_push($row1,$row);
+    
+    }
+    return $row1;
+  } else {
+    echo "0 results";
+  }
+
+}
+
+else if($value=="today")
+{
+
+  $sql="SELECT * FROM tbl_ride WHERE ride_date > DATE_SUB(NOW(), INTERVAL 1 DAY)  ORDER BY total_fare ASC";
+  $result = $conn->query($sql);
+  $row1=array();
+    
+  if ($result->num_rows > 0) {
+ 
+    while($row = $result->fetch_assoc()) {
+
+      array_push($row1,$row);
+    
+    }
+    return $row1;
+  } else {
+    echo "0 results";
+  }
+}
+  elseif($value=="none")
+  {
+    $sql7 = "SELECT * FROM `tbl_ride`";
+    $result7 = $conn->query($sql7);
+
+    $row1=array();
+
+    if ($result7->num_rows > 0) {
+   
+    while($row7 = $result7->fetch_assoc()) {
+
+        array_push($row1,$row7);
+        
+     
+
+
+
+    }
+    return $row1;
+}
+     else {
+    echo "No New User found";
+    }
+  
+
+}
+
+
+}
+
+
+
+
+
+function filteradminnewcab($id31, $value, $conn)
+
+{
+
+
+if($value!="none")
+{
+
+ $sql="SELECT * FROM tbl_ride WHERE `car`='".$value."'";
+   $result = $conn->query($sql);
+ 
+   $row1=array();
+     
+   if ($result->num_rows > 0) {
+  
+     while($row = $result->fetch_assoc()) {
+ 
+       array_push($row1,$row);
+     
+     }
+     return $row1;
+   } else {
+     echo "0 results";
+   }
+ }
+ elseif($value=="none")
+ {
+   $sql08 = "SELECT * FROM `tbl_ride`";
+   $result08 = $conn->query($sql08);
+
+   if ($result08->num_rows > 0) {
+       $row1=array();
+  
+ 
+   while($row = $result08->fetch_assoc()) {
+       
+      
+       
+       array_push($row1,$row);
+      
+
+   }
+  
+
+   return $row1;
+}
+    else {
+   echo "No New User found";
+   }
+
+
+ }
+
+
+
+}
+
+
+
+
+
+
+
+
+
 
 
 

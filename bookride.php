@@ -51,8 +51,8 @@ if($_SESSION['userdata']['name']!="admin")
 
                 <form class="form-inline my-2 my-lg-0">
               
-                <span style="margin-right:500px"><b><?php
-                echo "Welcome ".$_SESSION['userdata']['name'];
+                <span style="margin-right:500px"><b>Welcome <?php
+                echo $_SESSION['userdata']['name']
                 ?></b></span>
                   <span style="margin-left:10px"><a href="homeuser.php">Home</a><span>
                 <a href="Logout.php" style="margin-left:10px">Logout</a>

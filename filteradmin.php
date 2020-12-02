@@ -847,6 +847,219 @@ if (isset($_POST['id33']) && isset($_POST['value']))
 
 
 
+if (isset($_POST['id56']) && isset($_POST['text']))
+
+{
+    $id7 = $_POST['id56'];
+    $text = $_POST['text'];
+    // echo $value;
+    
+?>
+                    
+                    <table border="2px solid black">
+    
+                    <tr>
+                    
+                    <th>Rideid</th>
+                    <th>Date</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Distance</th>
+                    <th>Luggage</th> 
+                    <th>Customer id</th> 
+                    <th>Car</th> 
+                
+                    <th>Total Fare</th>   
+
+                    <th>View</th>
+  
+
+    
+   
+  
+    </tr>
+    <tbody>
+                    
+                        <?php
+    $admin = new adminwork();
+    $dbconnect = new Dbconnect();
+    $row1 = $admin->sortalluserride($id7, $text, $dbconnect->conn);
+    if ($row1 != "")
+    {
+
+        foreach ($row1 as $key => $row)
+        {
+
+            if($row['luggage']=="")
+            $luggage=0;
+            else
+            $luggage=$row['luggage'];
+
+            echo        "<tr>";
+            echo "<td>".$row['ride_id']."</td>";
+            echo "<td>".$row['ride_date']."</td>";
+            echo "<td>".$row['from_distance']."</td>";
+            echo "<td>".$row['to_distance']."</td>";
+            echo "<td>".$row['total_distance']."</td>";
+            echo "<td>".$luggage."</td>";  
+        
+            echo "<td>".$row['customer_user_id']."</td>";
+            echo "<td>".$row['car']."</td>";
+            echo "<td>".$row['total_fare']."</td>";
+            echo "<td><a href='invoice.php?id54=".$row['customer_user_id']."&rid=".$row['ride_id']."'>Invoice</a></td>";
+             
+
+        }
+    }
+}
+
+
+
+
+if (isset($_POST['id59']) && isset($_POST['value']))
+
+{
+    $id7 = $_POST['id59'];
+    $value = $_POST['value'];
+    // echo $value;
+    
+?>
+                    
+                
+                    <table border="2px solid black">
+    
+                    <tr>
+                    
+                    <th>Rideid</th>
+                    <th>Date</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Distance</th>
+                    <th>Luggage</th> 
+                    <th>Customer id</th> 
+                    <th>Car</th> 
+                
+                    <th>Total Fare</th>   
+
+                    <th>View</th>
+                
+
+                    
+                
+                
+                    </tr>
+                    <tbody>
+                    
+                        <?php
+    $admin = new adminwork();
+    $dbconnect = new Dbconnect();
+    $row1 = $admin->filteradminweek($id7, $value, $dbconnect->conn);
+    if ($row1 != "")
+    {
+
+        foreach ($row1 as $key => $row)
+        {
+
+            if($row['luggage']=="")
+                    $luggage=0;
+                    else
+                    $luggage=$row['luggage'];
+
+                    echo        "<tr>";
+                    echo "<td>".$row['ride_id']."</td>";
+                    echo "<td>".$row['ride_date']."</td>";
+                    echo "<td>".$row['from_distance']."</td>";
+                    echo "<td>".$row['to_distance']."</td>";
+                    echo "<td>".$row['total_distance']."</td>";
+                    echo "<td>".$luggage."</td>";  
+                
+                    echo "<td>".$row['customer_user_id']."</td>";
+                    echo "<td>".$row['car']."</td>";
+                    echo "<td>".$row['total_fare']."</td>";
+                    echo "<td><a href='invoice.php?id54=".$row['customer_user_id']."&rid=".$row['ride_id']."'>Invoice</a></td>";
+                     
+
+        }
+    }
+}
+
+
+
+
+
+
+if (isset($_POST['id60']) && isset($_POST['value']))
+
+{
+    $id33 = $_POST['id60'];
+    $value = $_POST['value'];
+   
+?><table border="2px solid black">
+    
+<tr>
+
+<th>Rideid</th>
+<th>Date</th>
+<th>From</th>
+<th>To</th>
+<th>Distance</th>
+<th>Luggage</th> 
+<th>Customer id</th> 
+<th>Car</th> 
+
+<th>Total Fare</th>   
+
+<th>View</th>
+
+
+
+
+
+</tr>
+<tbody>
+                        
+            <?php
+    $admin = new adminwork();
+    $dbconnect = new Dbconnect();
+    $row1 = $admin->filteradminnewcab($id33, $value, $dbconnect->conn);
+    $total=0;
+    if ($row1 != "")
+    {
+
+        foreach ($row1 as $key => $row)
+        {
+
+         
+            if($row['luggage']=="")
+            $luggage=0;
+            else
+            $luggage=$row['luggage'];
+
+            echo        "<tr>";
+            echo "<td>".$row['ride_id']."</td>";
+            echo "<td>".$row['ride_date']."</td>";
+            echo "<td>".$row['from_distance']."</td>";
+            echo "<td>".$row['to_distance']."</td>";
+            echo "<td>".$row['total_distance']."</td>";
+            echo "<td>".$luggage."</td>";  
+        
+            echo "<td>".$row['customer_user_id']."</td>";
+            echo "<td>".$row['car']."</td>";
+            echo "<td>".$row['total_fare']."</td>";
+            echo "<td><a href='invoice.php?id54=".$row['customer_user_id']."&rid=".$row['ride_id']."'>Invoice</a></td>";
+           
+    
+        }
+
+        
+    }
+}
+
+
+
+
+
+
 
 
 ?>

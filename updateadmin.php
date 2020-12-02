@@ -1,7 +1,13 @@
 <?php 
 
+
+include 'adminwork.php';
 include 'header.php';
 
+
+if(isset($_SESSION['userdata']['name']))
+{
+ $id=$_SESSION['userdata']['userid'];
 
 
 ?>
@@ -12,7 +18,8 @@ include 'header.php';
     <head>
         <title>Admin</title>
     </head>
-    <link rel="stylesheet" type="text/css" href="styleadmin.css">
+    <link rel="stylesheet" type="text/css" href="styleadmin.css"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
     <body>
         <div class="main">
             <div id="asider">
@@ -62,73 +69,70 @@ include 'header.php';
                     >Change Password</a></li>
                     </ul></li>
                   
+                  
                     
 
                   
-                 
+                   
+                  
+                    
 
                 </ul>
-</div>
+
+            </div>
             <div class="container"> 
               
 
-                <div class="section" style="margin-top:50px;margin-left:250px">
                 
+              
+
+
+                <div class="section">
+
+
+
                 <?php
-                include 'adminwork.php';
-
-                ?>
-
-                <form action="#" method="post">
-                <h2 id="dl">Add Drop Location</h2>
-                <label> Drop Location: </label>
-                <input type="text" name="drop" placeholder="drop" id="drop" require><br>
-                <label> Distance: </label>
-                <input type="text" placeholder="distance" name="distance" id="distance"><br>
-                <label> Stop: </label>
-                <input type="radio"  name="stop" id="stop" value="1">Yes
-
-                <input type="radio" name="stop" id="stop1" value="0">No<br>
-
-                <input type="submit" name="btnsubmit" value="submit" id="btnsubmit">
-              
-              
-              
-                </form>
-                <?php
-
-                    if(isset($_POST['btnsubmit']))
-                    {
-                        if(isset($_POST['stop']) && isset($_POST['drop']))
-                        {
-                       
-                        $drop=$_POST['drop'];
-                        $distance=$_POST['distance']; 
-                        $radio=$_POST['stop'];
-                    
-                     
-                    
-
-                $admin=new adminwork();
+                $can="";
+                $user=new adminwork();
                 $dbconnect=new Dbconnect();
-                $admin->addlocation($drop,$distance,$radio,$dbconnect->conn);
-                    }
-                    else
-                    {
-                    echo "<script>alert('Field cant be null')</script>";
-                    }
+                $row1=$user->updateadmin($id,$dbconnect->conn);
+                $obj=$dbconnect->conn;
+                $total=0;
+
+                foreach($row1 as $key=>$row)
+                {
+                   
+                    echo  '
+                    <form action="user.php?id6='.$id.'" method="post">
+                    <label>Name :</label>
+                    <input type="text" id="nam" name="name" value="'.$row["name"].'"><br>
+                    <label>Phone :</label>
+                    <input type="text" id="mobile" name="mobile" value="'.$row["mobile"].'"><br>
+                    <input type="submit" id="up" name="update2" value="Update"><br>
+                   
+                    
+                    
+                    ';
+
+                    
+                   
                 }
                   ?> 
-
+                 
                 </div>
 
 
-              
-                </div>
-               
             </div>
 
         </div>
-        <script src="cab.js"></script>
     </body>
 </html>
+<?php
+}
+else
+{
+    echo 'Please Login,first to continue <a href="login2.php">Click here to login</a>';
+}
+?>
+
+

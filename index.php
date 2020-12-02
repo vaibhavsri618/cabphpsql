@@ -3,6 +3,8 @@
 
 include 'user.php';
 
+unset($_SESSION['book']);
+
 ?>
 
 <!DOCTYPE html>
@@ -29,18 +31,12 @@ include 'user.php';
           
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Features <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Reviews</a>
-                </li>
+             
 
                 <form class="form-inline my-2 my-lg-0">
                   <a href="login2.php">Login</a>
                   <a href="registration2.php" style="padding-left: 10px;">Registration</a>
                  
-                  <button class="btn" type="submit" id="btn">Submit</button>
                 </form>
                
                 

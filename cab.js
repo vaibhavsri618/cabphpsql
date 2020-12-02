@@ -1,5 +1,6 @@
 $(document).ready(function(){
-
+    $("#book2").hide();
+    $("#book").hide();
     $("#cars").change(function(){
 
         $cars=$("#cars").val();
@@ -30,6 +31,23 @@ $(document).ready(function(){
            return false;
         }
     });
+
+    $("#mobile").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+             
+        if (!(keyCode >= 48 && keyCode <= 57)) {
+           return false;
+        }
+    });
+
+    $("#distance").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+             
+        if (!(keyCode >= 48 && keyCode <= 57)) {
+           return false;
+        }
+    });
+
 
     $("#submit").click(function(a){
 
@@ -62,8 +80,8 @@ $(document).ready(function(){
             
             $("#error1").show();
             $("#res").hide();
-            $(this).show();
-            $("#book").hide();
+           
+         
            
         }
         else
@@ -81,14 +99,15 @@ $(document).ready(function(){
            
             $("#error2").show();
             $("#res").hide();
-            $(this).show();
-            $("#book").hide();
+           
+            
     
         }
         else
         {
         $("#error2").hide();
         $("#res").show();
+      
        
 
        
@@ -99,14 +118,15 @@ $(document).ready(function(){
            
             $("#error3").show();
             $("#res").hide();
-            $(this).show();
-            $("#book").hide();
+          
+           
         }
         else
         {
             
         $("#error3").hide();
         $("#res").show();
+      
        
 
        
@@ -119,26 +139,26 @@ $(document).ready(function(){
             $("#error").show();
             $("#res").hide();
            
-            $(this).show();
-            alert("location same");
+          
+           
            
         }
         else
         {
-            $("book").show();
+          
             $("#error").hide();
             $("#res").show();
+            
           
 
        
             
         }
 
-        if(drop!=pick && drop!="0" && pick!=0)
+        if(drop!=pick && drop!="10" && pick!="0" && cars!="20")
         {
 
-            document.getElementById("book").style.visibility="visible";
-            document.getElementById("submit").style.visibility="hidden";
+           
         
         console.log(cars);
         console.log(weight);
@@ -159,6 +179,9 @@ $(document).ready(function(){
         success: function (answer) {
            
           $("#res").html(answer);
+
+          $("#book").show();
+          $("#submit").hide();
           
         }
       });
@@ -234,7 +257,10 @@ $(document).ready(function(){
 
 
     $("#submit2").click(function(a){
-      
+
+   
+
+        
         a.preventDefault();
 
         var pick=$("#pick").val();
@@ -316,7 +342,8 @@ $(document).ready(function(){
         console.log(weight);
 
 
-
+        if(drop!=pick && drop!="10" && pick!="0" && cars!="20")
+        {
     $.ajax({
         type: 'post',
         url: 'cabcalculate.php',
@@ -330,9 +357,12 @@ $(document).ready(function(){
         success: function (answer) {
              
           $("#res").html(answer);
-          
+
+          $(this).hide();
+        $("#book2").show();
         }
       });
+    }
 
     });
 

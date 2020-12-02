@@ -8,6 +8,7 @@
     height: 1500px;
     background-color: black;
     float: left;
+   
 }
 ul {
     margin-left: 0px;
@@ -59,6 +60,7 @@ body {
     float: right;
     width: 70%;
     height: auto;
+    margin-top:50px;
    }
 
 .opt {

@@ -28,8 +28,9 @@ $id=$_SESSION['userdata']['userid'];
                 <th>Drop Point</th>
                 <th>Total Distance</th>
                 <th>Luggage</th>
-                <th>Total Fare</th> 
+               
                 <th>Car</th> 
+                <th>Total Fare</th> 
                 <th>Action</th>
             
                 </tr>
@@ -44,7 +45,8 @@ $id=$_SESSION['userdata']['userid'];
                $row1= $user->filteruser($id12,$text,$dbcon->conn);
               
 
-
+                    if(isset($row1))
+                    {
                 
 
                
@@ -70,6 +72,7 @@ $id=$_SESSION['userdata']['userid'];
                     echo "<td><a href='user.php?id5=".$id."&rideid=".$rideid."'>Cancel Ride</a></td>";
                 }
             }
+        }
 
 
 
@@ -106,7 +109,8 @@ $id=$_SESSION['userdata']['userid'];
 
             
 
-           
+           if(isset($row1))
+           {
 
             foreach($row1 as $key=>$row)
             {
@@ -128,7 +132,7 @@ $id=$_SESSION['userdata']['userid'];
               
                
                 $total=$total+$row['total_fare'];
-
+            }
             }
             ?>
             <tr><th colspan='6'>Your total spending till now</th>
@@ -170,10 +174,12 @@ $id=$_SESSION['userdata']['userid'];
                 $row1= $user->filtercanceluser($id14,$text,$dbcon->conn);
               
 
+                    $can="";
 
 
+                    if(isset($row1))
 
-
+                    {
 
                 foreach($row1 as $key=>$row)
                 {
@@ -205,7 +211,7 @@ $id=$_SESSION['userdata']['userid'];
                 }
                }
 
-
+            }
 
                     
 
@@ -242,6 +248,8 @@ $id=$_SESSION['userdata']['userid'];
 
 
 
+                if(isset($row1))
+                {
 
 
 
@@ -266,7 +274,7 @@ $id=$_SESSION['userdata']['userid'];
                     echo "<td>".$row['car']."</td>";
                     echo "<td>".$row['total_fare']."</td>"; 
 
-
+                }
                   
 
                 }
@@ -322,27 +330,31 @@ $id=$_SESSION['userdata']['userid'];
             
               
         
-                    if(isset($_POST['id13']) && isset($_POST['value']))
+                    if(isset($_POST['id53']) && isset($_POST['value']))
         
                     {
-                        $id20=$_POST['id13'];
+                        $id20=$_POST['id53'];
                         $value=$_POST['value'];
 
                
                         
                         ?>
-                    <table border="2px solid black">
-                    
+                   <table border="2px solid black">
+    
                     <tr>
                     
-                    <th>Userid</th>
-                    <th>Email</th>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Mobile No</th>
-                    <th>Approve</th>
+                    <th>Ride Date</th>
+                    <th>Pick Up Point</th>
+                    <th>Drop Point</th>
+                    <th>Total Distance</th>
+                    <th>Luggage</th>
+                    <th>Total Fare</th> 
+                    <th>Car</th> 
+                
+                
                     </tr>
                     <tbody>
+
                                 
                         <?php
                     
@@ -376,10 +388,10 @@ $id=$_SESSION['userdata']['userid'];
 
 
 
-                        if(isset($_POST['id14']) && isset($_POST['value']))
+                        if(isset($_POST['id54']) && isset($_POST['value']))
         
                         {
-                            $id21=$_POST['id14'];
+                            $id21=$_POST['id54'];
                             $value=$_POST['value'];
     
                    
@@ -432,10 +444,10 @@ $id=$_SESSION['userdata']['userid'];
                                 }
                             }
                     
-                            if(isset($_POST['id15']) && isset($_POST['value']))
+                            if(isset($_POST['id55']) && isset($_POST['value']))
         
                             {
-                                $id22=$_POST['id15'];
+                                $id22=$_POST['id55'];
                                 $value=$_POST['value'];
         
                        
