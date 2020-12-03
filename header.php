@@ -4,6 +4,11 @@
 
 session_start();
 
+if(isset($_SESSION['userdata']['userid']))
+{
+
+
+
 ?>
 
 <!doctype html>
@@ -22,7 +27,7 @@ session_start();
 
   
 
-<header style="background-color:lightgray">
+<header style="background-color:lightgray;">
       <nav  class="navbar navbar-expand-lg">
       <h2>Ced<span style="color: #CDDC39;">Cab</span></h2>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,3 +51,10 @@ session_start();
           </div>
       </nav>
   </header>
+
+  <?php
+
+              }
+
+
+?>

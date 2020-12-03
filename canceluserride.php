@@ -5,6 +5,8 @@ include 'header1.php';
 
 if(isset($_SESSION['userdata']['username']))
 {
+    if($_SESSION['userdata']['name']!="admin")
+    {
 $id=$_SESSION['userdata']['userid'];
 ?>
 
@@ -57,6 +59,8 @@ $id=$_SESSION['userdata']['userid'];
             <div class="container"> 
               
                 <div class="section">
+
+                <h2 style="text-align:center">Cancelled Rides:</h2><br>
                 
                 <?php
          
@@ -112,6 +116,7 @@ $id=$_SESSION['userdata']['userid'];
                     <th>Total Fare</th> 
                     <th>Car</th> 
                     <th>Cancel By</th>
+                    <th>View</th>
                   
                     </tr>
                     <tbody>
@@ -153,6 +158,9 @@ $id=$_SESSION['userdata']['userid'];
 
                    
                     echo "<td>".$can."</td>";
+
+                    echo "<td><a href='invoiceuser.php?id54=".$row['customer_user_id']."&rid=".$row['ride_id']."'>Invoice</a></td>";
+                
                 }  
                 }
                   ?> 
@@ -254,6 +262,14 @@ $.ajax({
     </body>
 </html>
 <?php
+  }
+  else
+  {
+  echo '<script type="text/javascript">; 
+  alert("You cant access admin profile"); 
+  window.location= "Logout.php";
+  </script>';
+  }
 }
 else
 {

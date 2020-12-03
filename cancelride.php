@@ -9,6 +9,8 @@ include 'header.php';
 
 if(isset($_SESSION['userdata']['name']))
 {
+    if($_SESSION['userdata']['name']=="admin")
+    {
     $id=$_SESSION['userdata']['userid'];
 
 ?>
@@ -88,6 +90,9 @@ if(isset($_SESSION['userdata']['name']))
 
 
 <div class="section">
+
+<h2 style="text-align:center">Cancelled Rides:</h2><br>
+              
                 
                  
                     <label>Sort By:</label>
@@ -285,6 +290,15 @@ $.ajax({
 </html>
 
 <?php
+  }
+  else
+  {
+  echo '<script type="text/javascript">; 
+  alert("You cant access admin profile"); 
+  window.location= "Logout.php";
+  </script>';
+  }
+
 }
 else
 {

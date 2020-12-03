@@ -83,8 +83,12 @@ class user
                                 header('Location:bookride.php');
                             }
                         }
-                    } else {
-                        echo "<script>alert('Username or Password doesnt match or Please wait for admin to approve you');</script>";
+                    } elseif( $row['isblock'] == 0) {
+                        echo "<script>alert('Please wait for admin to approve you');</script>";
+                        unset($_SESSION['book']);
+                    }
+                    else{
+                        echo "<script>alert('Username or Password doesnt match');</script>";
                         unset($_SESSION['book']);
                     }
                 }
@@ -98,7 +102,7 @@ class user
             {
             echo '<script type="text/javascript">; 
             alert("Field cant be empty"); 
-            window.location= "registration2.php";
+            window.location= "login2.php";
             </script>';
             }
 
@@ -133,7 +137,7 @@ class user
             );
         }
 
-        $sql1 = "SELECT * FROM tbl_user WHERE user_name='" . $username . "'";
+        $sql1 = "SELECT * FROM tbl_user WHERE user_name='".$username."'";
         $result = $conn->query($sql1);
 
         if ($result->num_rows > 0) {
@@ -174,16 +178,17 @@ class user
             }
         } else {
             foreach ($error as $err) {
-                $display = $err['msg'];
+                $display1 = $err['msg'];
+              
             }
-            if($display=="Field cant be empty")
+            if($display1=="Field cant be empty")
             {
             echo '<script type="text/javascript">; 
             alert("Field cant be empty"); 
             window.location= "registration2.php";
             </script>';
             }
-            else if($display=="Password does not matches")
+            else if($display1=="Password does not matches")
             {
             echo '<script type="text/javascript">; 
             alert("Password does not matches"); 
@@ -191,7 +196,7 @@ class user
             </script>';
             }
 
-            else if($display=="Username/Email already present")
+            else if($display1=="Username/Email already present")
             {
             echo '<script type="text/javascript">; 
             alert("Username/Email already present"); 

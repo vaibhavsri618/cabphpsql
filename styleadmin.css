@@ -5,7 +5,7 @@
    }
 #asider {
     width: 25%;
-    height: 1500px;
+    height: 3000px;
     background-color: black;
     float: left;
    
@@ -144,12 +144,29 @@ th
     padding: 10px;
 }
 
-#drop
+#drop90
+{
+    width: 200px;
+    margin-bottom: 10px;
+    height: 30px;
+    margin-left: 60px;
+}
+
+#drop1
 {
     width: 200px;
     margin-bottom: 10px;
     height: 30px;
     margin-left: 10px;
+}
+#distance1
+{
+    
+    width: 200px;
+    margin-bottom: 10px;
+    height: 30px;
+    margin-left: 57px;
+
 }
 #distance
 {
@@ -206,9 +223,31 @@ label
       width: 70%;
       height: 30px;
       margin-top: 100px;
+      margin-left:85px
   }
 
   #mobile
+  {
+   
+        width: 70%;
+        height: 30px;
+        margin-top: 20px;
+        
+    
+  }
+
+  #mobile3
+  {
+   
+        width: 70%;
+        height: 30px;
+        margin-top: 20px;
+        
+    
+  }
+
+
+  #mobile6
   {
    
         width: 70%;
@@ -252,8 +291,8 @@ label
   {
 
     width: 60%;
-    margin-left: 45%;
-    margin-top: 100px;
+    margin-left: 20%;
+    margin-top: 20px;
 
 
   }
@@ -261,4 +300,9 @@ label
   {
       margin-top:100px;
       
+  }
+
+  .label1
+  {
+      margin: 0;
   }

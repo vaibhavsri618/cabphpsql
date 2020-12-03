@@ -7,6 +7,8 @@ include 'header.php';
 
 if(isset($_SESSION['userdata']['name']))
 {
+    if($_SESSION['userdata']['name']=="admin")
+    {
  $id=$_SESSION['userdata']['userid'];
 
 
@@ -89,6 +91,9 @@ if(isset($_SESSION['userdata']['name']))
 
                 <div class="section">
 
+                <h2 style="text-align:center">Change Password:</h2>
+              
+
 
                 <?php
                
@@ -103,7 +108,7 @@ if(isset($_SESSION['userdata']['name']))
                <label>New Password :</label>
                <input type="password" id="mobile2" name="newpass"><br>
                <label>Confirm Password :</label>
-               <input type="password" id="mobile" name="conpass"><br>
+               <input type="password" id="mobile3" name="conpass"><br>
                <input type="submit" id="up" name="update3" value="Update"><br>
               
                
@@ -125,6 +130,15 @@ if(isset($_SESSION['userdata']['name']))
 </body>
 </html>
 <?php
+    
+}
+else
+{
+echo '<script type="text/javascript">; 
+alert("You cant access admin profile"); 
+window.location= "login2.php";
+</script>';
+}
 }
 else
 {

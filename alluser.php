@@ -8,6 +8,8 @@ include 'header.php';
 
 if(isset($_SESSION['userdata']['name']))
 {
+    if($_SESSION['userdata']['name']=="admin")
+    {
 
 $id=$_SESSION['userdata']['userid'];
 
@@ -85,6 +87,9 @@ $id=$_SESSION['userdata']['userid'];
                
 
                 <div class="section">
+
+                <h2 style="text-align:center">All users:</h2><br>
+              
                
                     <label>Sort By:</label>
                     <select id="select">
@@ -223,7 +228,14 @@ $.ajax({
     </body>
 </html>
 <?php
-
+    }
+    else
+    {
+    echo '<script type="text/javascript">; 
+    alert("You cant access admin profile"); 
+    window.location= "Logout.php";
+    </script>';
+    }
             }
             else
             echo 'Please Login,first to continue <a href="login2.php">Click here to login</a>';

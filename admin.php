@@ -2,7 +2,11 @@
 
 include ('header.php');
 include 'adminwork.php';
+if(isset($_SESSION['userdata']['userid']))
+{
 
+  if($_SESSION['userdata']['name']=="admin")
+{
 ?>
 
 
@@ -248,3 +252,23 @@ include 'adminwork.php';
         </div>
     </body>
 </html>
+
+<?php
+  }
+  else
+  {
+  echo '<script type="text/javascript">; 
+  alert("You cant access admin profile"); 
+  window.location= "Logout.php";
+  </script>';
+  }
+
+}
+
+
+else
+{
+    echo 'Please Login,first to continue <a href="login2.php">Click here to login</a>';
+}
+
+?>

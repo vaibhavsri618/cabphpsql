@@ -2,7 +2,8 @@
 
 
 include 'header.php';
-
+if($_SESSION['userdata']['name']=="admin")
+{
 
 
 
@@ -87,27 +88,32 @@ include 'header.php';
                     <th>Name</th>
                     <th>Distance</th>
                     <th>Stop</th>
-                    <th>Action1</th>
-                    <th>Action2</th>
+                    <th colspan=2 style="text-align:center">Action</th>
+                  
                 
                     </tr>
                     <tbody>
                 
                 <?php
                 include 'adminwork.php';
-
+                $stop="";
                 $admin=new adminwork();
                 $dbconnect=new Dbconnect();
                 $row1=$admin->viewlocation($dbconnect->conn);
 
                 foreach($row1 as $key=>$row8)
                 {
+                    if($row8['is_available']==1)
+                    $stop="Stop";
+                    elseif($row8['is_available']==0)
+                    $stop="No Stop";
+
 
                     echo "<tr>";
                     echo "<td>".$row8['id']."</td>";
                     echo "<td>".$row8['name']."</td>";
                     echo "<td>".$row8['distance']."</td>";
-                    echo "<td>".$row8['is_available']."</td>";
+                    echo "<td>".$stop."</td>";
                   
                     echo "<td><a href='deletelocation.php?id=".$row8['id']."'>Delete</a></td>
                     <td><a href='updatelocation.php?id=".$row8['id']."'>Update</a></td>";
@@ -134,3 +140,16 @@ include 'header.php';
         </div>
     </body>
 </html>
+
+
+<?php
+
+}
+else
+{
+echo '<script type="text/javascript">; 
+alert("You cant access admin profile"); 
+window.location= "login2.php";
+</script>';
+}
+?>

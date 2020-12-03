@@ -1952,8 +1952,28 @@ if($value!="none")
 
 }
 
+function getname($id31,$conn)
+
+{
 
 
+ $sql="SELECT * FROM tbl_user WHERE `user_id`='".$id31."'";
+   $result = $conn->query($sql);
+ 
+   $row1=array();
+     
+   if ($result->num_rows > 0) {
+  
+     while($row = $result->fetch_assoc()) {
+ 
+       array_push($row1,$row);
+     
+     }
+     return $row1;
+   } else {
+     echo "0 results";
+   }
+ }
 
 
 

@@ -2,15 +2,15 @@
 
 
 
-include 'header.php';
 
 
+
+session_start();
 include 'adminwork.php';
-
-
 
 if(isset($_SESSION['userdata']['name']))
 {
+    include 'header1.php';
 
 $id=$_SESSION['userdata']['userid'];
 
@@ -20,54 +20,46 @@ $id=$_SESSION['userdata']['userid'];
 
 <html>
     <head>
-        <title>Admin</title>
+        <title>User</title>
     </head>
     <link rel="stylesheet" type="text/css" href="styleadmin.css">
-	<link rel="stylesheet" type="text/css" href="cab.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+    <link rel="stylesheet" type="text/css" href="cab.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
     <body style="background:none">
         <div class="main">
             <div id="asider">
-                <h3 style="color:white">Hello Admin</h3>
+                <h3 style="color:white">Hello <?php echo $_SESSION["userdata"]["name"] ?></h3>
 
                 <ul>
-                    <li class="li"><a href="admin.php">Dashboard</a></li>
-                  
-
-                    <li class="li"><a href="#">View User</a>
+                    <li class="li"><a href="homeuser.php">Dashboard</li>
+                    <li class="li"><a href="bookride.php">Book a Ride </li>
+                    <li class="li"><a href="#">Rides</a>
                     <ul class="ul">
-                    <li class="li"><a href="viewnewuser.php">View New/Block User
-                    </li>
-                    <li class="li"><a href="approveduser.php">View Approved User
-                    </li>
-                   
-                    <li class="li"><a href="alluser.php">
-                    All User</a></li></ul></li>
-
-                    <li class="li"><a href="#">View Ride Request</a>
-                    <ul class="ul">
-                    <li class="li"><a href="newrequest.php">
-                    New Request</li>
-                    <li class="li"><a href="cancelride.php"
-                    >Cancelled</li>
-                    <li class="li"><a href="completeride.php">
-                    Completed</a></li></ul></li>
-              
-
-
-                    <li class="li"><a href="#">Location</a>
-                    <ul class="ul">
-                    <li class="li"><a href="addlocation.php">Add new Location
-                    </li>
-                   
-                    <li class="li"><a href="viewlocation.php">
-                    View Location</a></li></ul></li>
+                    <li class="li"><a href="pendingride.php">
+                    Pending Rides</li>
+                    <li class="li"><a href="completeduserride.php"
+                    >Completed Rides</li>
+                    <li class="li"><a href="canceluserride.php"
+                    >Cancel Rides</li> 
+                    <li class="li"><a href="allride.php"
+                    >All Rides</li>
+                    </ul></li>
                     
-
                   
-                
                   
+                    <li class="li"><a href="#">Profile</a>
+                    <ul class="ul">
+                    <li class="li"><a href="updateuser.php">
+                    update</li>
+                   
+                    <li class="li"><a href="changepass.php"
+                    >Change Password</li>
+                    </ul></li>
+                  
+                   
                     
 
                 </ul>
@@ -75,7 +67,7 @@ $id=$_SESSION['userdata']['userid'];
             </div>
             <div class="container"> 
                 <?php
-               
+
 				
 
 
@@ -142,7 +134,7 @@ $id=$_SESSION['userdata']['userid'];
                 ?>
 				<div id="invoice">
 				<input type="button" class="btn btn-primary btn-sm" value="CedCab" id="button1" style="margin-left:10px"><br><br>
-				<label>InVoice</label><br>
+				<label style="margin:0 padding:0">InVoice</label><br>
 				<label class="label1">Ride id</label> : 
 				<label><?php echo $rid; ?> </label><br>
 

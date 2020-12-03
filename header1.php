@@ -3,6 +3,8 @@
 <?php
 
 
+if(isset($_SESSION['userdata']['userid']))
+{
 
 ?>
 
@@ -46,3 +48,9 @@
           </div>
       </nav>
   </header>
+
+
+  <?php
+
+              }
+?>

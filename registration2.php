@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
     <h4 id='error'><?php 
     if (count($error)>0) {
     
-        echo $display; 
+        echo $display1; 
     } ?></h4>
        
         <form class="form" action="#" method="POST">
@@ -86,7 +86,7 @@ if (isset($_POST['submit'])) {
             <label><b>Email:</b></label>
             <input type="email" name="email" id="user" placeholder="Email"><br>
             <label><b>Name:</b></label>
-            <input type="text" name="name" id="user5" placeholder="Name"><br>
+            <input type="text" name="name" id="user5" placeholder="Name" pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$"><br>
             <label><b>Password:</b></label>
             <input type="password" name="password"
              id="user2" placeholder="Password"><br>
@@ -95,7 +95,7 @@ if (isset($_POST['submit'])) {
             id="user1" placeholder="Confirm Password"><br>
             <label><b>Mobile No:</b></label>
             <input type="text" name="phone" id="mobile" placeholder="Mobile"><br><br>
-            <input type="submit" name="submit" value="Submit" id="submit">
+            <input type="submit" name="submit" value="Submit" id="submit1">
       
         </form>
         <br>

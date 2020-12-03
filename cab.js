@@ -1,6 +1,14 @@
 $(document).ready(function(){
     $("#book2").hide();
     $("#book").hide();
+    $cars=$("#cars").val();
+    if($cars=="cedmicro")
+    {
+   
+    $("#weight").hide();
+    $("#weight").val("");
+   
+    }
     $("#cars").change(function(){
 
         $cars=$("#cars").val();
@@ -14,10 +22,13 @@ $(document).ready(function(){
         if($cars=="cedmicro")
         {
         $("#error").show();
+        $("#weight").hide();
+        $("#weight").val("");
        
         }
         else
         $("#error").hide();
+        $("#weight").show();
 
     
     
@@ -40,6 +51,14 @@ $(document).ready(function(){
         }
     });
 
+    $("#nam").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+             
+        if ((keyCode >= 48 && keyCode <= 57)) {
+           return false;
+        }
+    });
+
     $("#distance").bind("keypress", function (e) {
         var keyCode = e.which ? e.which : e.keyCode
              
@@ -47,6 +66,31 @@ $(document).ready(function(){
            return false;
         }
     });
+
+    $("#mobile").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+             
+        if (!(keyCode >= 48 && keyCode <= 57)) {
+           return false;
+        }
+    });
+
+    $("#nam").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+             
+        if ((keyCode==32)) {
+           return false;
+        }
+    });
+
+    $("#drop").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+             
+        if ((keyCode==32)) {
+           return false;
+        }
+    });
+
 
 
     $("#submit").click(function(a){
@@ -63,6 +107,7 @@ $(document).ready(function(){
 
 
         console.log(drop);
+      
         
 
        
@@ -182,6 +227,35 @@ $(document).ready(function(){
 
           $("#book").show();
           $("#submit").hide();
+
+          $("#drop").change(function(){
+
+            $("#submit").show();
+            $("#book").hide();
+            });
+
+            $("#pick").change(function(){
+
+                $("#submit").show();
+                $("#book").hide();
+                });
+
+                $("#cars").change(function(){
+
+                    $("#submit").show();
+                    $("#book").hide();
+                    });
+
+                    $("#weight").keyup(function(){
+
+                        $("#submit").show();
+                        $("#book").hide();
+                        });
+            
+        
+    
+
+
           
         }
       });

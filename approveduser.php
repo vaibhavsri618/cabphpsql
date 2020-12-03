@@ -7,6 +7,8 @@ include 'header.php';
 
 if(isset($_SESSION['userdata']['name']))
 {
+    if($_SESSION['userdata']['name']=="admin")
+    {
  $id=$_SESSION['userdata']['userid'];
 
 
@@ -91,6 +93,10 @@ if(isset($_SESSION['userdata']['name']))
 
 
                 <div class="section">
+
+
+                <h2 style="text-align:center">Approved User:</h2><br>
+              
 
 
                 
@@ -221,6 +227,14 @@ if(isset($_SESSION['userdata']['name']))
 </html>
 
 <?php
+  }
+  else
+  {
+  echo '<script type="text/javascript">; 
+  alert("You cant access admin profile"); 
+  window.location= "Logout.php";
+  </script>';
+  }
 }
 else
 echo 'Please Login,first to continue <a href="login2.php">Click here to login</a>';

@@ -5,6 +5,9 @@ require 'Dbconnect.php';
 
 session_start();
 
+if($_SESSION['userdata']['name']=="admin")
+{
+
 ?>
 
 
@@ -90,9 +93,9 @@ session_start();
                        ?>
                     
                         <label> Drop Location: </label>
-                        <input type="text" name="drop" placeholder="drop" id="drop" value="<?php echo $row['name']?>"><br>
+                        <input type="text" name="drop" placeholder="drop" id="drop1" pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" value="<?php echo $row['name']?>"><br>
                         <label> Distance: </label>
-                        <input type="number" placeholder="distance" name="distance" id="distance" value="<?php echo $row['distance']?>"><br>
+                        <input type="number" placeholder="distance" name="distance" id="distance1" value="<?php echo $row['distance']?>"><br>
                         <label> Stop: </label>
                       
                         <input type="radio"  name="stop" id="stop" value="1"<?php echo($row['is_available']==1)?'checked':''?>>Yes
@@ -163,3 +166,15 @@ session_start();
                 </html>
 
 
+<?php
+
+}
+else
+{
+echo '<script type="text/javascript">; 
+alert("You cant access admin profile"); 
+window.location= "Logout.php";
+</script>';
+}
+
+?>

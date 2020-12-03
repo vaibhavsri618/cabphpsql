@@ -1,6 +1,10 @@
 <?php 
 
 include 'header.php';
+if(isset($_SESSION['userdata']['name']))
+{
+    if($_SESSION['userdata']['name']=="admin")
+{
 
 
 
@@ -81,10 +85,10 @@ include 'header.php';
 
                 <form action="#" method="post">
                 <h2 id="dl">Add Drop Location</h2>
-                <label> Drop Location: </label>
-                <input type="text" name="drop" placeholder="drop" id="drop" require><br>
+                <label> Location: </label>
+                <input type="text" name="drop" placeholder="drop" id="drop90" pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" require><br>
                 <label> Distance: </label>
-                <input type="text" placeholder="distance" name="distance" id="distance"><br>
+                <input type="text" placeholder="distance" name="distance" id="distance" require><br>
                 <label> Stop: </label>
                 <input type="radio"  name="stop" id="stop" value="1">Yes
 
@@ -132,3 +136,23 @@ include 'header.php';
         <script src="cab.js"></script>
     </body>
 </html>
+
+<?php
+
+}
+else
+{
+echo '<script type="text/javascript">; 
+alert("You cant access admin profile"); 
+window.location= "Logout.php";
+</script>';
+}
+}
+else
+{
+
+
+    echo 'Please Login,first to continue <a href="login2.php">Click here to login</a>';
+}
+
+            ?>

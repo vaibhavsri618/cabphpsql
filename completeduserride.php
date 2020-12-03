@@ -4,6 +4,8 @@ include 'user.php';
 include 'header1.php';
 if(isset($_SESSION['userdata']['username']))
 {
+    if($_SESSION['userdata']['name']!="admin")
+    {
 $id=$_SESSION['userdata']['userid'];
 ?>
 
@@ -56,6 +58,8 @@ $id=$_SESSION['userdata']['userid'];
             
 
                 <div class="section">
+
+                <h2 style="text-align:center">Completed Rides:</h2><br>
                 
                 <?php
          
@@ -109,6 +113,7 @@ $id=$_SESSION['userdata']['userid'];
                     <th>Luggage</th>
                    
                     <th>Car</th> 
+                    <th>View</th>
                     <th>Total Fare</th> 
                   
                   
@@ -141,6 +146,8 @@ $id=$_SESSION['userdata']['userid'];
                     echo "<td>".$row['total_distance']."</td>";
                     echo "<td>".$luggage."</td>";  
                     echo "<td>".$row['car']."</td>";
+                    echo "<td><a href='invoiceuser.php?id54=".$row['customer_user_id']."&rid=".$row['ride_id']."'>Invoice</a></td>";
+                
                     echo "<td>".$row['total_fare']."</td>"; 
                   
                     $total=$total+$row['total_fare'];
@@ -149,7 +156,7 @@ $id=$_SESSION['userdata']['userid'];
                    
                 }
                   ?> 
-                  <tr><th colspan='6'>Your total spending till now</th>
+                  <tr><th colspan='7'>Your total spending till now</th>
                   <th><?php echo $total ?></th>
                 </tr>
             </tbody>
@@ -250,6 +257,14 @@ $.ajax({
     </body>
 </html>
 <?php
+  }
+  else
+  {
+  echo '<script type="text/javascript">; 
+  alert("You cant access user profile"); 
+  window.location= "login2.php";
+  </script>';
+  }
 }
 else
 {

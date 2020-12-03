@@ -6,7 +6,10 @@ include 'header1.php';
 
 if(isset($_SESSION['userdata']['username']))
 {
+    if($_SESSION['userdata']['name']!="admin")
+    {
 $id=$_SESSION['userdata']['userid'];
+
 ?>
 
 
@@ -68,6 +71,9 @@ $id=$_SESSION['userdata']['userid'];
 
                 <div class="section">
                 
+
+                <h2 style="text-align:center">Update Password:</h2>
+              
              
 
                
@@ -86,7 +92,7 @@ $id=$_SESSION['userdata']['userid'];
                     <label>New Password :</label>
                     <input type="password" id="mobile2" name="newpass"><br>
                     <label>Confirm Password :</label>
-                    <input type="password" id="mobile" name="conpass"><br>
+                    <input type="password" id="mobile6" name="conpass"><br>
                     <input type="submit" id="up" name="update3" value="Update"><br>
                    
                     
@@ -109,6 +115,14 @@ $id=$_SESSION['userdata']['userid'];
     </body>
 </html>
 <?php
+  }
+  else
+  {
+  echo '<script type="text/javascript">; 
+  alert("You cant access user profile"); 
+  window.location= "Logout.php";
+  </script>';
+  }
 }
 else
 {

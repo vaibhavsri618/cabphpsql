@@ -96,6 +96,12 @@ if($_SESSION['userdata']['name']!="admin")
                             $row1=$user->home($dbconnect->conn);
                             foreach($row1 as $key=>$row)
                             {
+                              if($row['name']==$pick2)
+                              {
+                              
+                                continue;
+                              
+                              }
 
                               echo '<option value="'.$row['name'].'">'.$row['name'].'</option>';
 
@@ -125,9 +131,15 @@ if($_SESSION['userdata']['name']!="admin")
                               $row1=$user->home($dbconnect->conn);
                               foreach($row1 as $key=>$row)
                               {
-
+                               
+                              
+                                if($row['name']==$drop2)
+                                {
+                                
+                                  continue;
+                                
+                                }
                                 echo '<option value="'.$row['name'].'">'.$row['name'].'</option>';
-
                               }
                               ?>
                      
@@ -141,11 +153,34 @@ if($_SESSION['userdata']['name']!="admin")
                     <label class="col-sm-3 col-md-3 col-lg-3 col-xs-3 mt-2">Cab</label>
                     <select name="cars" class="col-sm-9 col-md-9 col-xs-9 col-lg-9 input sel form-control-plaintext" id="cars">
                         <option value="<?php echo $cars2?>"><?php echo $cars2?></option>
-                        
-                        <option value="cedmicro">Cedmicro</option>
+                       <?php if($cars2=="cedmicro") {?>
+                        <!-- <option value="cedmicro">Cedmicro</option> -->
                         <option value="cedmini">Cedmini</option>
                         <option value="cedroyal">Cedroyal</option>
                         <option value="cedsuv">CedSuv</option>
+                        <?php } elseif($cars2=="cedmini") {?>
+
+                        <option value="cedmicro">Cedmicro</option>
+                        <!-- <option value="cedmini">Cedmini</option>-->
+                        <option value="cedroyal">Cedroyal</option> 
+                        <option value="cedsuv">CedSuv</option>
+
+                        <?php } elseif($cars2=="cedroyal") {?>
+
+                          <option value="cedmicro">Cedmicro</option>
+                        <option value="cedmini">Cedmini</option>
+                        <!-- <option value="cedroyal">Cedroyal</option>  -->
+                        <option value="cedsuv">CedSuv</option>
+
+                        <?php } elseif($cars2=="cedsuv") {?>
+
+                          <option value="cedmicro">Cedmicro</option>
+                        <option value="cedmini">Cedmini</option>
+                        <!-- <option value="cedroyal">Cedroyal</option>  -->
+                        <option value="cedsuv">CedSuv</option>
+
+                        <?php } ?>
+
                         
                       </select>
                   

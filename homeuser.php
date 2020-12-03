@@ -9,7 +9,8 @@ include 'header1.php';
 
 if(isset($_SESSION['userdata']['username']))
 {
-
+if($_SESSION['userdata']['name']!="admin")
+{
     $id=$_SESSION['userdata']['userid'];
 
 ?>
@@ -134,6 +135,14 @@ if(isset($_SESSION['userdata']['username']))
     </body>
 </html>
 <?php
+  }
+  else
+  {
+  echo '<script type="text/javascript">; 
+  alert("You cant access user profile"); 
+  window.location= "Logout.php";
+  </script>';
+  }
 }
 else
 {

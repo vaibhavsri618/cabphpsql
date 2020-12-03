@@ -5,6 +5,8 @@ include 'header1.php';
 
 if(isset($_SESSION['userdata']['username']))
 {
+    if($_SESSION['userdata']['name']!="admin")
+    {
 $id=$_SESSION['userdata']['userid'];
 
 ?>
@@ -59,6 +61,8 @@ $id=$_SESSION['userdata']['userid'];
 
                 <div class="section">
                 
+
+                <h2 style="text-align:center">Update Profile:</h2>
                 
 
              
@@ -98,9 +102,18 @@ $id=$_SESSION['userdata']['userid'];
             </div>
 
         </div>
+        <script src="cab.js"></script>
     </body>
 </html>
 <?php
+  }
+  else
+  {
+  echo '<script type="text/javascript">; 
+  alert("You cant access admin profile"); 
+  window.location= "login2.php";
+  </script>';
+  }
 }
 else
 {

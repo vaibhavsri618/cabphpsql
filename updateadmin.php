@@ -7,6 +7,9 @@ include 'header.php';
 
 if(isset($_SESSION['userdata']['name']))
 {
+
+    if($_SESSION['userdata']['name']=="admin")
+{
  $id=$_SESSION['userdata']['userid'];
 
 
@@ -90,6 +93,10 @@ if(isset($_SESSION['userdata']['name']))
                 <div class="section">
 
 
+                <h2 style="text-align:center">Update Profile:</h2>
+              
+
+
 
                 <?php
                 $can="";
@@ -105,7 +112,7 @@ if(isset($_SESSION['userdata']['name']))
                     echo  '
                     <form action="user.php?id6='.$id.'" method="post">
                     <label>Name :</label>
-                    <input type="text" id="nam" name="name" value="'.$row["name"].'"><br>
+                    <input type="text" id="nam" name="name" value="'.$row["name"].'" readonly><br>
                     <label>Phone :</label>
                     <input type="text" id="mobile" name="mobile" value="'.$row["mobile"].'"><br>
                     <input type="submit" id="up" name="update2" value="Update"><br>
@@ -125,9 +132,18 @@ if(isset($_SESSION['userdata']['name']))
             </div>
 
         </div>
+        <script src="cab.js"></script>
     </body>
 </html>
 <?php
+  }
+  else
+  {
+  echo '<script type="text/javascript">; 
+  alert("You cant access admin profile"); 
+  window.location= "login2.php";
+  </script>';
+  }
 }
 else
 {

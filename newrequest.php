@@ -8,7 +8,8 @@ include 'header.php';
 
 if(isset($_SESSION['userdata']['name']))
 {
-
+    if($_SESSION['userdata']['name']=="admin")
+    {
 $id=$_SESSION['userdata']['userid'];
 
 ?>
@@ -33,44 +34,44 @@ $id=$_SESSION['userdata']['userid'];
                     <li class="li"><a href="admin.php">Dashboard</a></li>
                   
 
-                    <li class="li"><a href="#">View User</a>
+                    <a href="#"><li class="li">View User</a>
                     <ul class="ul">
-                    <li class="li"><a href="viewnewuser.php">View New/Block User
-                    </li>
-                    <li class="li"><a href="approveduser.php">View Approved User
-                    </li>
+                   <a href="viewnewuser.php"><li class="li">View New/Block User
+                    </li></a>
+                    <a href="approveduser.php"><li class="li">View Approved User
+                    </li></a>
                    
-                    <li class="li"><a href="alluser.php">
-                    All User</a></li></ul></li>
+                    <a href="alluser.php"><li class="li">
+                    All User</li></a></ul></li>
 
                     <li class="li"><a href="#">View Ride Request</a>
                     <ul class="ul">
-                    <li class="li"><a href="newrequest.php">
-                    New Request</li>
-                    <li class="li"><a href="cancelride.php"
-                    >Cancelled</li>
-                    <li class="li"><a href="completeride.php">
-                    Completed</a></li>
-                    <li class="li"><a href="allrideadmin.php"
-                    >All Rides</a></li></ul></li>
+                    <a href="newrequest.php"><li class="li">
+                    New Request</li></a>
+                    <a href="cancelride.php"
+                    ><li class="li">Cancelled</li></a>
+                    <a href="completeride.php"><li class="li">
+                    Completed</li></a>
+                    <a href="allrideadmin.php"
+                    ><li class="li">All Rides</li></a></ul></li>
               
 
 
                     <li class="li"><a href="#">Location</a>
                     <ul class="ul">
-                    <li class="li"><a href="addlocation.php">Add new Location
-                    </li>
+                    <a href="addlocation.php"><li class="li">Add new Location
+                    </li></a>
                    
-                    <li class="li"><a href="viewlocation.php">
-                    View Location</a></li></ul></li>
+                    <a href="viewlocation.php"><li class="li">
+                    View Location</li></a></ul></li>
 
                     <li class="li"><a href="#">Profile</a>
                     <ul class="ul">
-                    <li class="li"><a href="updateadmin.php">
-                    update</li>
+                    <a href="updateadmin.php"><li class="li">
+                    update</li></a>
                    
-                    <li class="li"><a href="changeadminpass.php"
-                    >Change Password</a></li>
+                    <a href="changeadminpass.php"
+                    ><li class="li">Change Password</li></a>
                     </ul></li>
                   
                     
@@ -88,6 +89,9 @@ $id=$_SESSION['userdata']['userid'];
               
 
                 <div class="section">
+
+                <h2 style="text-align:center">New Rides Request:</h2><br>
+              
 
             
                     <label>Sort By:</label>
@@ -279,7 +283,14 @@ $.ajax({
     </body>
 </html>
 <?php
-
+      }
+      else
+      {
+      echo '<script type="text/javascript">; 
+      alert("You cant access admin profile"); 
+      window.location= "login2.php";
+      </script>';
+      }
             }
             else
             echo 'Please Login,first to continue <a href="login2.php">Click here to login</a>';
