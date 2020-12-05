@@ -21,6 +21,34 @@ if(isset($_SESSION['userdata']['name']))
 {
 if($_SESSION['userdata']['name']!="admin")
 {
+
+
+
+$expire=600;
+if(isset($_SESSION['timeout']))
+{
+if(time()-$_SESSION['timeout'] >$expire)
+{
+  
+ 
+  echo '<script type="text/javascript">; 
+alert("Session timeout"); 
+window.location= "Logout.php";
+</script>';
+
+}
+else
+{
+  $_SESSION['timeout']=time();
+}
+
+}
+else
+{
+$_SESSION['timeout']=time();
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -197,14 +225,19 @@ if($_SESSION['userdata']['name']!="admin")
 
                 <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
                     <p class="px-5 mb-2 col-sm-12 col-md-12 col-lg-12 bg-danger text-white" id="error"></p>
-                    <p class="text-center mb-2 bg-success text-white" id="res"></p>
+                    <p class="text-center mb-2 bg-success text-white" id="res"><?php if(isset($_SESSION['cost']))
+                    {
+                      
+                      echo "Total Cost is ".$_SESSION['cost'];
+                      
+                    }?></p>
 
                 </div>
 
 
                 <div class="form-group row ml-1 mr-1">
-                    <input type="button" value="Calculate Fare" class="button2 col-sm-5 col-md-5 col-xs-5 col-lg-5 py-2 mb-3  form-control-plaintext" id="submit2">
-                    <input type="submit" value="Book Ride"  class="button2 col-sm-5 col-md-5 col-xs-5 col-lg-5 py-2 mb-3 ml-4 form-control-plaintext" id="book2">
+                    <input type="button" value="Calculate Fare" class="button2 col-sm-12 col-md-12 col-xs-12 col-lg-12 py-2 mb-3  form-control-plaintext" id="submit2">
+                    <input type="submit" value="Book Ride"  class="button2 col-sm-12 col-md-12 col-xs-12 col-lg-12 py-2 mb-3 form-control-plaintext" id="book2">
                     </div>
             
               </div>
@@ -300,8 +333,8 @@ if($_SESSION['userdata']['name']!="admin")
 
 
               <div class="form-group row ml-1 mr-1">
-                  <input type="button" value="Calculate Fare" class="button2 col-sm-5 col-md-5 col-xs-5 col-lg-5 py-2 mb-3  form-control-plaintext" id="submit2">
-                  <input type="submit" value="Book Ride"  class="button2 col-sm-5 col-md-5 col-xs-5 col-lg-5 py-2 mb-3 ml-4 form-control-plaintext" id="book2">
+                  <input type="button" value="Calculate Fare" class="button2 col-sm-12 col-md-12 col-xs-12 col-lg-12 py-2 mb-3  form-control-plaintext" id="submit2">
+                  <input type="submit" value="Book Ride"  class="button2 col-sm-12 col-md-12 col-xs-12 col-lg-12 py-2 mb-3  form-control-plaintext" id="book2">
                   </div>
           
             </div>
@@ -369,6 +402,37 @@ if($_SESSION['userdata']['name']!="admin")
                   echo 'Please Login,first to continue <a href="login2.php">Click here to login</a>';
                 }
 
+                if(isset($_SESSION['cost']))
+                  {
+                  ?>
+
+<script>
+
+$("#submit2").hide();
+$("#book2").show();
+
+</script>
+
+<?php
+
+                  }
+                  else if(!isset($_SESSION['cost']))
+                  {
+?>
+
+<script>
+
+$("#submit2").show();
+$("#book2").hide();
+
+</script>
+
+
+
+<?php
+
+
+                  }
                   ?>
                     
     <script src="cab.js"></script>
@@ -376,5 +440,8 @@ if($_SESSION['userdata']['name']!="admin")
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+   
 </body>
 </html>

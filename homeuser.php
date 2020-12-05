@@ -13,6 +13,33 @@ if($_SESSION['userdata']['name']!="admin")
 {
     $id=$_SESSION['userdata']['userid'];
 
+
+$expire=600;
+if(isset($_SESSION['timeout']))
+{
+if(time()-$_SESSION['timeout'] >$expire)
+{
+  
+ 
+  echo '<script type="text/javascript">; 
+alert("Session timeout"); 
+window.location= "Logout.php";
+</script>';
+
+}
+else
+{
+  $_SESSION['timeout']=time();
+}
+
+}
+else
+{
+$_SESSION['timeout']=time();
+}
+
+
+
 ?>
 
 

@@ -381,6 +381,8 @@ class user
                         }
                     }
 
+                  
+
                     $sql5 =
                         "INSERT INTO `tbl_ride`(`ride_date`, `from_distance`, `to_distance`, `total_distance`, `luggage`, `total_fare`, `status`, `customer_user_id`,`car`)
     VALUES ('" .
@@ -403,11 +405,12 @@ class user
 
                     if ($conn->query($sql5) === true) {
                     }
-
+                  
                     echo " Your Ride has been booked please wait for corfirmation. <br> Total fare is 	&#x20B9;" .
                         $totalcost .
                         "/-";
                     unset($_SESSION['book']);
+                    unset($_SESSION['cost']);
                 } else {
                     $distance1 = 0;
                     $distance2 = 0;
@@ -567,6 +570,8 @@ class user
                             $totalcost = $totalcost + 400;
                         }
                     }
+
+                   
                     echo "Total cost: 	&#x20B9;" . $totalcost . "/-";
                 }
             } else {
@@ -717,9 +722,12 @@ class user
                         $totalcost = $totalcost + 400;
                     }
                 }
+               
                 echo "Total cost: 	&#x20B9;" . $totalcost . "/-";
             }
         }
+
+        $_SESSION['cost']=$totalcost;
     }
 
     function pendingride($id, $conn)

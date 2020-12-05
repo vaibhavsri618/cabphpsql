@@ -4,9 +4,37 @@ require 'Dbconnect.php';
 
 
 session_start();
+require 'header1.php';
 
 if($_SESSION['userdata']['name']=="admin")
 {
+
+
+$expire=600;
+if(isset($_SESSION['timeout']))
+{
+if(time()-$_SESSION['timeout'] >$expire)
+{
+  
+ 
+  echo '<script type="text/javascript">; 
+alert("Session timeout"); 
+window.location= "Logout.php";
+</script>';
+
+}
+else
+{
+  $_SESSION['timeout']=time();
+}
+
+}
+else
+{
+$_SESSION['timeout']=time();
+}
+
+
 
 ?>
 
@@ -57,8 +85,7 @@ if($_SESSION['userdata']['name']=="admin")
                     
 
                   
-                    <li class="li"><a href="totalearning.php">View Total EArning </li>
-                  
+                   
                     
 
                 </ul>
@@ -66,10 +93,9 @@ if($_SESSION['userdata']['name']=="admin")
             </div>
             <div class="container"> 
                 <?php
-                echo '<a href="Logout.php" id="a">Logout</a>';
+               
                 if (isset($_SESSION['userdata'])) {
-                    echo "<h1 style='margin:10px 0px 0px 35%'>Welcome 
-                        ".$_SESSION["userdata"]["username"]."</h1>";
+                   
 
 
 
@@ -121,11 +147,25 @@ if($_SESSION['userdata']['name']=="admin")
 
                         if(isset($_POST['btnsubmit']))
                         {
-
+                            $error=array();
                             $drop=$_POST['drop'];
                             $distance=$_POST['distance'];
                             $stop=$_POST['stop'];
 
+
+                            $sql1 = "SELECT * FROM tbl_location WHERE name='".$drop."'";
+                            $result = $conn->query($sql1);
+                    
+                            if ($result->num_rows > 0) {
+                                $error[] = array(
+                                    "id" => 'form',
+                                    'msg' => "Location all ready exist"
+                                );
+                            }
+
+                            if(count($error)==0)
+
+                            {
 
 
                             $sql4 = "UPDATE `tbl_location` SET `name`='".$drop."' , `distance`='".$distance."' , `is_available`='".$stop."' WHERE `id`=".$id."";
@@ -140,7 +180,13 @@ if($_SESSION['userdata']['name']=="admin")
                             }
 
 
+                        } else{
 
+                            foreach($error as $err)
+                            {
+                                echo "<p style='color:red'>".$err['msg']."</p>";
+                            }
+                        }
 
                         }
                 

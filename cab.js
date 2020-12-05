@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("#book2").hide();
+   
     $("#book").hide();
     $cars=$("#cars").val();
     if($cars=="cedmicro")
@@ -333,7 +333,7 @@ $(document).ready(function(){
     $("#submit2").click(function(a){
 
    
-
+        
         
         a.preventDefault();
 
@@ -432,12 +432,46 @@ $(document).ready(function(){
              
           $("#res").html(answer);
 
-          $(this).hide();
+       $("#submit2").hide();
         $("#book2").show();
+
+        $("#drop").change(function(){
+
+            $("#submit2").show();
+            $("#book2").hide();
+            });
+
+            $("#pick").change(function(){
+
+                $("#submit2").show();
+                $("#book2").hide();
+                });
+
+                $("#cars").change(function(){
+
+                    $("#submit2").show();
+                    $("#book2").hide();
+                    });
+
+                    $("#weight").keyup(function(){
+
+                        $("#submit2").show();
+                        $("#book2").hide();
+                        });
+            
+        
+    
+
+
+          
+        
         }
       });
+      $("#submit2").show();
+
     }
 
+   
     });
 
 

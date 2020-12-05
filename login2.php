@@ -4,6 +4,12 @@
 
 require 'user.php';
 $error=array();
+if(isset($_SESSION['userdata']['name']))
+{
+
+
+  header("Location:Logout.php");
+}
 
 if (isset($_POST['submit'])) {
     $name=isset($_POST['username'])?$_POST['username']:'';
