@@ -49,6 +49,16 @@ class user
             $error[] = array("id" => 'form', 'msg' => "Field cant be empty");
         }
 
+        $sql1 = "SELECT * FROM tbl_user WHERE user_name='".$username."'";
+        $result = $conn->query($sql1);
+
+        if ($result->num_rows == 0) {
+            $error[] = array(
+                "id" => 'form',
+                'msg' => "Please register first no register user found"
+            );
+        }
+
         if (count($error) == 0) {
             $sql =
                 "SELECT * FROM `tbl_user` WHERE `user_name`='" .
@@ -102,6 +112,14 @@ class user
             {
             echo '<script type="text/javascript">; 
             alert("Field cant be empty"); 
+            window.location= "login2.php";
+            </script>';
+            }
+
+            elseif($display=="Please register first no register user found")
+            {
+            echo '<script type="text/javascript">; 
+            alert("Please register first no register user found"); 
             window.location= "login2.php";
             </script>';
             }

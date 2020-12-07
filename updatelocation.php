@@ -153,7 +153,7 @@ $_SESSION['timeout']=time();
                             $stop=$_POST['stop'];
 
 
-                            $sql1 = "SELECT * FROM tbl_location WHERE name='".$drop."'";
+                            $sql1 = "SELECT * FROM tbl_location WHERE name='".$drop."' AND `id`!='".$id."'";
                             $result = $conn->query($sql1);
                     
                             if ($result->num_rows > 0) {
